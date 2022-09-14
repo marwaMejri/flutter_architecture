@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
-
-import 'clouds_entity.dart';
-import 'coordinate_entity.dart';
-import 'main_weather_info_entity.dart';
-import 'sunset_sunrise_entity.dart';
-import 'weather_description_entity.dart';
-import 'wind_info_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/clouds_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/coordinate_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/main_weather_info_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/sunset_sunrise_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/weather_description_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/wind_info_entity.dart';
 
 class WeatherInfoEntity extends Equatable {
   WeatherInfoEntity({
