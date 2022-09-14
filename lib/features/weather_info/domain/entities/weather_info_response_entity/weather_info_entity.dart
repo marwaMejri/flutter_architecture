@@ -30,7 +30,7 @@ class WeatherInfoEntity extends Equatable {
   final int? visibility;
   final WindInfoEntity? wind;
   final CloudsEntity? clouds;
-  final int? dt;
+  final String? dt;
   final SunsetSunriseEntity? sys;
   final int? timezone;
   final int? id;

@@ -1,3 +1,4 @@
+import 'package:flutter_architecture/core/utils/extension_functions/date_extension_functions.dart';
 import 'package:flutter_architecture/core/utils/mapper/data_mapper.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_response_model/clouds_response/clouds_response_model.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_response_model/coordinate_response/coordinate_response_model.dart';
@@ -71,7 +72,7 @@ class WeatherInfoResponseModel extends DataMapper<WeatherInfoEntity> {
           .toList(),
       coord: coordinateData?.mapToDomainModel() ?? CoordinateEntity(),
       cod: cod ?? 0,
-      dt: date ?? 0,
+      dt: date?.fromTimestampToDate() ?? null,
       name: cityName ?? '',
       base: base ?? '',
       sys: sunsetAndSunriseData?.mapToDomainModel() ?? SunsetSunriseEntity(),

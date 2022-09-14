@@ -1,3 +1,4 @@
+import 'package:flutter_architecture/core/utils/extension_functions/date_extension_functions.dart';
 import 'package:flutter_architecture/core/utils/mapper/data_mapper.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/sunset_sunrise_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -26,11 +27,11 @@ class SunsetSunriseResponseModel extends DataMapper<SunsetSunriseEntity> {
   @override
   SunsetSunriseEntity mapToDomainModel() {
     return SunsetSunriseEntity(
-      sunrise: sunrise ?? 0,
+      sunrise: sunrise?.fromTimestampToDate() ?? null,
       type: type ?? 0,
       id: id ?? 0,
       country: country ?? '',
-      sunset: sunset ?? 0,
+      sunset: sunset?.fromTimestampToDate() ?? null,
     );
   }
 }

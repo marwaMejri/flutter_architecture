@@ -12,8 +12,8 @@ class SunsetSunriseEntity extends Equatable {
   final int? type;
   final int? id;
   final String? country;
-  final int? sunrise;
-  final int? sunset;
+  final String? sunrise;
+  final String? sunset;
 
   @override
   List<Object?> get props => <Object?>[
