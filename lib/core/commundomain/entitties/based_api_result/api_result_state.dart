@@ -1,4 +1,4 @@
-import 'package:flutter_architecture/core/commundomain/error_result_model.dart';
+import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/error_result_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'api_result_state.freezed.dart';
