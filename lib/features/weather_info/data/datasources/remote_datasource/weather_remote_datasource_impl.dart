@@ -5,6 +5,7 @@ import 'package:flutter_architecture/core/utils/helpers/api_call_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/custom_exceptions/custom_connection_exception.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/string_extension_functions.dart';
 import 'package:flutter_architecture/features/weather_info/data/datasources/remote_datasource/weather_remote_datasource.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_by_coordinates_request_model.dart';
 import 'package:http/http.dart';
 
 import '../../models/weather_info_remote_response_model/weather_info_response_model.dart';
@@ -47,12 +48,13 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
 
   @override
   Future<ApiResultModel<WeatherInfoResponseModel?>> getWeatherDataByCoordinates(
-      {double? lat, double? lon}) async {
+      {WeatherByCoordinatesRequestModel?
+          weatherByCoordinatesRequestModel}) async {
     try {
       final ApiResultModel<Response> _result = await _apiCallHelper
           .getWS(uri: getWeatherDetails, params: <String, dynamic>{
-        latitudeKey: lat,
-        longitudeKey: lon,
+        latitudeKey: weatherByCoordinatesRequestModel?.lat,
+        longitudeKey: weatherByCoordinatesRequestModel?.lon,
         appIdKey: appIdValue,
       });
       return _result.when(

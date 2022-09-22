@@ -16,7 +16,6 @@ class GetWeatherDataByCoordinates
   Future<ApiResultModel<WeatherInfoEntity?>> call(
       WeatherByCoordinatesRequestModel weatherByCoordinatesRequestModel) {
     return weatherRepository.getWeatherDataByCoordinates(
-        lat: weatherByCoordinatesRequestModel.lat,
-        lon: weatherByCoordinatesRequestModel.lon);
+        weatherByCoordinatesRequestModel: weatherByCoordinatesRequestModel);
   }
 }

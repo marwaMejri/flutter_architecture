@@ -7,6 +7,8 @@ import 'dart:async' as _i4;
 
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_model.dart'
     as _i2;
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_by_coordinates_request_model.dart'
+    as _i6;
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart'
     as _i5;
 import 'package:mockito/mockito.dart' as _i1;
@@ -46,17 +48,16 @@ class MockMockWeatherRepository extends _i1.Mock
 
   @override
   _i4.Future<_i2.ApiResultModel<_i5.WeatherInfoEntity?>>
-      getWeatherDataByCoordinates({
-    double? lat,
-    double? lon,
-  }) =>
+      getWeatherDataByCoordinates(
+              {_i6.WeatherByCoordinatesRequestModel?
+                  weatherByCoordinatesRequestModel}) =>
           (super.noSuchMethod(
             Invocation.method(
               #getWeatherDataByCoordinates,
               [],
               {
-                #lat: lat,
-                #lon: lon,
+                #weatherByCoordinatesRequestModel:
+                    weatherByCoordinatesRequestModel
               },
             ),
             returnValue:
@@ -67,8 +68,8 @@ class MockMockWeatherRepository extends _i1.Mock
                 #getWeatherDataByCoordinates,
                 [],
                 {
-                  #lat: lat,
-                  #lon: lon,
+                  #weatherByCoordinatesRequestModel:
+                      weatherByCoordinatesRequestModel
                 },
               ),
             )),

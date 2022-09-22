@@ -34,8 +34,9 @@ void main() {
     final double lon = 50.0;
     void _arrangeResponse() {
       when(_mockWeatherRepository.getWeatherDataByCoordinates(
-              lon: lon, lat: lat))
-          .thenAnswer((_) async {
+        weatherByCoordinatesRequestModel:
+            WeatherByCoordinatesRequestModel(lon: lon, lat: lat),
+      )).thenAnswer((_) async {
         return ApiResultModel<WeatherInfoEntity>.success(data: _mockedResult);
       });
     }
@@ -54,7 +55,9 @@ void main() {
           ApiResultModel<WeatherInfoEntity>.success(data: _mockedResult),
         );
         verify(_mockWeatherRepository.getWeatherDataByCoordinates(
-            lat: lat, lon: lon));
+          weatherByCoordinatesRequestModel:
+              WeatherByCoordinatesRequestModel(lon: lon, lat: lat),
+        ));
         verifyNoMoreInteractions(_mockWeatherRepository);
       },
     );

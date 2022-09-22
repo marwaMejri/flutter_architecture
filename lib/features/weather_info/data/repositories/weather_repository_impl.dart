@@ -4,6 +4,7 @@ import 'package:flutter_architecture/core/utils/helpers/custom_exceptions/custom
 import 'package:flutter_architecture/features/weather_info/data/datasources/local_datasource/weather_local_datasource.dart';
 import 'package:flutter_architecture/features/weather_info/data/datasources/remote_datasource/weather_remote_datasource.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_remote_response_model/weather_info_response_model.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_by_coordinates_request_model.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/repositories/weather_repository.dart';
 
@@ -52,11 +53,11 @@ class WeatherRepositoryImpl implements WeatherRepository {
 
   @override
   Future<ApiResultModel<WeatherInfoEntity?>> getWeatherDataByCoordinates(
-      {double? lat, double? lon}) async {
+      {WeatherByCoordinatesRequestModel? weatherByCoordinatesRequestModel}) async {
     try {
       final ApiResultModel<WeatherInfoResponseModel?> _result =
           await remoteDataSource.getWeatherDataByCoordinates(
-              lon: lon, lat: lat);
+              weatherByCoordinatesRequestModel: weatherByCoordinatesRequestModel);
       return _result.when(
         success: (WeatherInfoResponseModel? weatherInfoResponseModel) async {
           if (weatherInfoResponseModel != null) {
