@@ -1,5 +1,5 @@
 import 'package:flutter_architecture/core/utils/mapper/data_mapper.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/coordinate_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/coordinate_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'coordinate_response_model.g.dart';
@@ -18,7 +18,7 @@ class CoordinateResponseModel extends DataMapper<CoordinateEntity> {
       _$CoordinateResponseModelFromJson(json);
 
   @override
-  CoordinateEntity mapToDomainModel() {
+  CoordinateEntity mapToModel() {
     return CoordinateEntity(
       lat: lat ?? 0.0,
       lon: lon ?? 0.0,

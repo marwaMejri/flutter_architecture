@@ -1,15 +1,14 @@
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_model.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_by_coordinates_request_model.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/clouds_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/coordinate_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/weather_description_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/weather_info_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/clouds_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/coordinate_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/usecases/get_weather_data_by_coordinates.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../repositories/weather_repository_test.mocks.dart';
-
 
 void main() {
   late MockMockWeatherRepository _mockWeatherRepository;
@@ -47,7 +46,7 @@ void main() {
         //arrange
         _arrangeResponse();
         //act
-        final ApiResultModel<WeatherInfoEntity> result =
+        final ApiResultModel<WeatherInfoEntity?> result =
             await _sut(WeatherByCoordinatesRequestModel(lon: lon, lat: lat));
         //assert
         expect(

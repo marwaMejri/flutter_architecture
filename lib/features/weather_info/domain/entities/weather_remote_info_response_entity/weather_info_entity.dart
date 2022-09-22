@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/clouds_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/coordinate_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/main_weather_info_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/sunset_sunrise_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/weather_description_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/wind_info_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/clouds_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/coordinate_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/main_weather_info_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/sunset_sunrise_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/wind_info_entity.dart';
 
 class WeatherInfoEntity extends Equatable {
   WeatherInfoEntity({
@@ -24,7 +24,7 @@ class WeatherInfoEntity extends Equatable {
   });
 
   final CoordinateEntity? coord;
-  final List<WeatherDescriptionEntity>? weather;
+  final List<WeatherDescriptionEntity?>? weather;
   final String? base;
   final MainWeatherInfoEntity? main;
   final int? visibility;

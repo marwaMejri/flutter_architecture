@@ -1,5 +1,5 @@
 import 'package:flutter_architecture/core/utils/mapper/data_mapper.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_info_response_entity/weather_description_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'weather_description_response_model.g.dart';
@@ -23,7 +23,7 @@ class WeatherDescriptionResponseModel
       _$WeatherDescriptionResponseModelFromJson(json);
 
   @override
-  WeatherDescriptionEntity mapToDomainModel() {
+  WeatherDescriptionEntity mapToModel() {
     return WeatherDescriptionEntity(
       id: id ?? 0,
       description: description ?? '',
