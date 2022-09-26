@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/core/di/app_component/app_component.dart';
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await initAppComponentLocator();
   runApp(const MyApp());
 }
 
