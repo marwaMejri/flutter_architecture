@@ -8,7 +8,7 @@ class ConnectivityCheckerHelper {
     return _handleResult(connectivityResult);
   }
 
-  Stream<ConnectivityResult> listenToConnectivityChanged() {
+  static Stream<ConnectivityResult> listenToConnectivityChanged() {
     return Connectivity().onConnectivityChanged;
   }
 

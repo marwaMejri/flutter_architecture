@@ -7,7 +7,7 @@ import 'dart:async' as _i5;
 
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_model.dart'
     as _i3;
-import 'package:flutter_architecture/core/utils/helpers/connectivity_checker_helper.dart'
+import 'package:flutter_architecture/core/utils/helpers/connectivity_helper/connectivity_checker_helper.dart'
     as _i2;
 import 'package:http/http.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;

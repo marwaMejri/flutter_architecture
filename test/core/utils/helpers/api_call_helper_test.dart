@@ -1,4 +1,4 @@
-import 'package:flutter_architecture/core/utils/helpers/api_call_helper.dart';
+import 'package:flutter_architecture/core/utils/helpers/api_call_helper/api_call_helper.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

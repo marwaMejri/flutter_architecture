@@ -18,21 +18,18 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApiResultState<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
     required TResult Function(T data) data,
     required TResult Function(ErrorResultModel errorResultModel) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function(T data)? data,
     TResult Function(ErrorResultModel errorResultModel)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function(T data)? data,
     TResult Function(ErrorResultModel errorResultModel)? error,
     required TResult orElse(),
@@ -40,21 +37,18 @@ mixin _$ApiResultState<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading<T> value) loading,
     required TResult Function(Data<T> value) data,
     required TResult Function(Error<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
     TResult Function(Data<T> value)? data,
     TResult Function(Error<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
     TResult Function(Data<T> value)? data,
     TResult Function(Error<T> value)? error,
     required TResult orElse(),
@@ -77,117 +71,6 @@ class _$ApiResultStateCopyWithImpl<T, $Res>
   final ApiResultState<T> _value;
   // ignore: unused_field
   final $Res Function(ApiResultState<T>) _then;
-}
-
-/// @nodoc
-abstract class _$$LoadingCopyWith<T, $Res> {
-  factory _$$LoadingCopyWith(
-          _$Loading<T> value, $Res Function(_$Loading<T>) then) =
-      __$$LoadingCopyWithImpl<T, $Res>;
-}
-
-/// @nodoc
-class __$$LoadingCopyWithImpl<T, $Res>
-    extends _$ApiResultStateCopyWithImpl<T, $Res>
-    implements _$$LoadingCopyWith<T, $Res> {
-  __$$LoadingCopyWithImpl(
-      _$Loading<T> _value, $Res Function(_$Loading<T>) _then)
-      : super(_value, (v) => _then(v as _$Loading<T>));
-
-  @override
-  _$Loading<T> get _value => super._value as _$Loading<T>;
-}
-
-/// @nodoc
-
-class _$Loading<T> implements Loading<T> {
-  const _$Loading();
-
-  @override
-  String toString() {
-    return 'ApiResultState<$T>.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loading<T>);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(T data) data,
-    required TResult Function(ErrorResultModel errorResultModel) error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(T data)? data,
-    TResult Function(ErrorResultModel errorResultModel)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(T data)? data,
-    TResult Function(ErrorResultModel errorResultModel)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Loading<T> value) loading,
-    required TResult Function(Data<T> value) data,
-    required TResult Function(Error<T> value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
-    TResult Function(Data<T> value)? data,
-    TResult Function(Error<T> value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
-    TResult Function(Data<T> value)? data,
-    TResult Function(Error<T> value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Loading<T> implements ApiResultState<T> {
-  const factory Loading() = _$Loading<T>;
 }
 
 /// @nodoc
@@ -253,7 +136,6 @@ class _$Data<T> implements Data<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
     required TResult Function(T data) data,
     required TResult Function(ErrorResultModel errorResultModel) error,
   }) {
@@ -263,7 +145,6 @@ class _$Data<T> implements Data<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function(T data)? data,
     TResult Function(ErrorResultModel errorResultModel)? error,
   }) {
@@ -273,7 +154,6 @@ class _$Data<T> implements Data<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function(T data)? data,
     TResult Function(ErrorResultModel errorResultModel)? error,
     required TResult orElse(),
@@ -287,7 +167,6 @@ class _$Data<T> implements Data<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading<T> value) loading,
     required TResult Function(Data<T> value) data,
     required TResult Function(Error<T> value) error,
   }) {
@@ -297,7 +176,6 @@ class _$Data<T> implements Data<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
     TResult Function(Data<T> value)? data,
     TResult Function(Error<T> value)? error,
   }) {
@@ -307,7 +185,6 @@ class _$Data<T> implements Data<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
     TResult Function(Data<T> value)? data,
     TResult Function(Error<T> value)? error,
     required TResult orElse(),
@@ -392,7 +269,6 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
     required TResult Function(T data) data,
     required TResult Function(ErrorResultModel errorResultModel) error,
   }) {
@@ -402,7 +278,6 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function(T data)? data,
     TResult Function(ErrorResultModel errorResultModel)? error,
   }) {
@@ -412,7 +287,6 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function(T data)? data,
     TResult Function(ErrorResultModel errorResultModel)? error,
     required TResult orElse(),
@@ -426,7 +300,6 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Loading<T> value) loading,
     required TResult Function(Data<T> value) data,
     required TResult Function(Error<T> value) error,
   }) {
@@ -436,7 +309,6 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
     TResult Function(Data<T> value)? data,
     TResult Function(Error<T> value)? error,
   }) {
@@ -446,7 +318,6 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Loading<T> value)? loading,
     TResult Function(Data<T> value)? data,
     TResult Function(Error<T> value)? error,
     required TResult orElse(),
