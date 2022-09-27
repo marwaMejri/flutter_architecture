@@ -8,7 +8,9 @@ import 'package:flutter_architecture/core/utils/helpers/connectivity_helper/conn
 import 'package:flutter_architecture/core/utils/helpers/custom_exceptions/custom_connection_exception.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/string_extension_functions.dart';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 
+@injectable
 class ApiCallHelper {
   ApiCallHelper(this.connectivityCheckerHelper);
 

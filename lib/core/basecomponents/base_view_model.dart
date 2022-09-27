@@ -15,34 +15,43 @@ class BaseViewModel extends ChangeNotifier {
     _toggleLoading.add(show);
   }
 
-  ApiResultState _viewModelState = const ApiResultState.data(data: '');
+  // ApiResultState _viewModelState = const ApiResultState.data(data: '');
+  //
+  // void setState(ApiResultState value) {
+  //   _viewModelState = value;
+  // }
+  //
+  // void setStateAndNotifyListeners(ApiResultState value) {
+  //   _viewModelState = value;
+  //   notifyListeners();
+  // }
 
-  void setState(ApiResultState value) {
-    _viewModelState = value;
+  void clearAllObservers() {}
+
+  @override
+  void dispose() {
+    clearAllObservers();
+    super.dispose();
   }
 
-  void setStateAndNotifyListeners(ApiResultState value) {
-    _viewModelState = value;
-    notifyListeners();
-  }
-
-  Future<void> executeParamsUseCase<Type, Params>(
+  Future<ApiResultState<Type>?> executeParamsUseCase<Type, Params>(
       BaseParamsUseCase<Type, Params> useCase, Params query) async {
     showLoadingIndicator(true);
     final ApiResultModel<Type>? _apiResult = await useCase.call(query);
-    _apiResult?.when(success: (Type data) {
-      _viewModelState = ApiResultState<Type>.data(data: data);
-      showLoadingIndicator(false);
-      setStateAndNotifyListeners(_viewModelState);
-    }, failure: (ErrorResultModel errorResultEntity) {
-      _viewModelState = ApiResultState<Type>.error(
-        errorResultModel: ErrorResultModel(
-          message: errorResultEntity.message,
-          statusCode: errorResultEntity.statusCode,
-        ),
-      );
-      showLoadingIndicator(false);
-      setStateAndNotifyListeners(_viewModelState);
-    });
+    return _apiResult?.when(
+      success: (Type data) {
+        showLoadingIndicator(false);
+        return ApiResultState<Type>.data(data: data);
+      },
+      failure: (ErrorResultModel errorResultEntity) {
+        showLoadingIndicator(false);
+        return ApiResultState<Type>.error(
+          errorResultModel: ErrorResultModel(
+            message: errorResultEntity.message,
+            statusCode: errorResultEntity.statusCode,
+          ),
+        );
+      },
+    );
   }
 }

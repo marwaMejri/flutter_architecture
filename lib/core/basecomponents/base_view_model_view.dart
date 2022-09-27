@@ -6,29 +6,28 @@ import 'package:flutter_architecture/core/utils/helpers/connectivity_helper/conn
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:provider/provider.dart';
 
-class BaseViewModelView<BaseViewModel> extends StatefulWidget {
+class BaseViewModelView<T> extends StatefulWidget {
   const BaseViewModelView({
     Key? key,
     this.onInitState,
     required this.buildWidget,
   }) : super(key: key);
-  final void Function(BaseViewModel provider)? onInitState;
-  final Widget Function(BaseViewModel provider) buildWidget;
+  final void Function(T provider)? onInitState;
+  final Widget Function(T provider) buildWidget;
 
   @override
-  State<BaseViewModelView> createState() => _BaseViewModelViewState();
+  State<BaseViewModelView<T>> createState() => _BaseViewModelViewState<T>();
 }
 
-class _BaseViewModelViewState extends State<BaseViewModelView> {
-  late final BaseViewModel _provider;
+class _BaseViewModelViewState<T> extends State<BaseViewModelView<T>> {
   bool _showLoader = false;
 
   @override
   void initState() {
     super.initState();
-    _provider = Provider.of<BaseViewModel>(context, listen: false);
+    final T _provider = Provider.of<T>(context, listen: false);
     checkInternetAvailability();
-    toggleLoadingWidget();
+    toggleLoadingWidget(_provider);
     if (widget.onInitState != null) {
       widget.onInitState!(_provider);
     }
@@ -47,8 +46,8 @@ class _BaseViewModelViewState extends State<BaseViewModelView> {
     });
   }
 
-  void toggleLoadingWidget() {
-    _provider.toggleLoading.stream.listen((bool show) {
+  void toggleLoadingWidget(T provider) {
+    (provider as BaseViewModel).toggleLoading.stream.listen((bool show) {
       setState(() {
         _showLoader = show;
       });
@@ -57,8 +56,8 @@ class _BaseViewModelViewState extends State<BaseViewModelView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BaseViewModel>(
-      builder: (BuildContext context, BaseViewModel provider, Widget? child) {
+    return Consumer<T>(
+      builder: (BuildContext context, T provider, Widget? child) {
         return Stack(
           alignment: Alignment.center,
           children: <Widget>[

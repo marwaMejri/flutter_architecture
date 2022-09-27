@@ -6,7 +6,7 @@ class BaseResponsiveWidget extends StatelessWidget {
   const BaseResponsiveWidget({
     Key? key,
     required this.buildWidget,
-    required this.initializeConfig,
+    this.initializeConfig=false,
   }) : super(key: key);
 
   final Widget Function(

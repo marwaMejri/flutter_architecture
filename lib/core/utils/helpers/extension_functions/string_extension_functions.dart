@@ -6,7 +6,14 @@ extension ExtensionsOnString on String {
   Uri parseUri({Map<String, dynamic>? params}) {
     return Uri.parse(
       this,
-    ).replace(queryParameters: params);
+    ).replace(
+      queryParameters: params?.map(
+        (key, value) => MapEntry(
+          key,
+          value.toString(),
+        ),
+      ),
+    );
   }
 }
 
