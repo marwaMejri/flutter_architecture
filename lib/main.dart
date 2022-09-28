@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider<WeatherDetailsViewModel>(
@@ -26,6 +25,7 @@ class MyApp extends StatelessWidget {
         ],
         child: WeatherDetails(),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
