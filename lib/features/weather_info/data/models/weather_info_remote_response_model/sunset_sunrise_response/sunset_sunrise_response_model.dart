@@ -27,11 +27,11 @@ class SunsetSunriseResponseModel extends DataMapper<SunsetSunriseEntity> {
   @override
   SunsetSunriseEntity mapToModel() {
     return SunsetSunriseEntity(
-      sunrise: sunrise?.fromTimestampToDate() ?? null,
+      sunrise: sunrise?.fromTimestampToTime() ?? null,
       type: type ?? 0,
       id: id ?? 0,
       country: country ?? '',
-      sunset: sunset?.fromTimestampToDate() ?? null,
+      sunset: sunset?.fromTimestampToTime() ?? null,
     );
   }
 }

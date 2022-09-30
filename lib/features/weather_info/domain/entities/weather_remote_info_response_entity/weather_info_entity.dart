@@ -5,6 +5,7 @@ import 'package:flutter_architecture/features/weather_info/domain/entities/weath
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/sunset_sunrise_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/wind_info_entity.dart';
+import 'package:flutter_architecture/features/weather_info/utils/weather_theme.dart';
 
 class WeatherInfoEntity extends Equatable {
   WeatherInfoEntity({
@@ -21,13 +22,14 @@ class WeatherInfoEntity extends Equatable {
     this.id,
     this.name,
     this.cod,
+    this.weatherTheme,
   });
 
   final CoordinateEntity? coord;
   final List<WeatherDescriptionEntity?>? weather;
   final String? base;
   final MainWeatherInfoEntity? main;
-  final int? visibility;
+  final String? visibility;
   final WindInfoEntity? wind;
   final CloudsEntity? clouds;
   final String? dt;
@@ -36,6 +38,7 @@ class WeatherInfoEntity extends Equatable {
   final int? id;
   final String? name;
   final int? cod;
+  final WeatherTheme? weatherTheme;
 
   @override
   List<Object?> get props => <Object?>[
@@ -52,5 +55,6 @@ class WeatherInfoEntity extends Equatable {
         id,
         name,
         cod,
+        weatherTheme,
       ];
 }

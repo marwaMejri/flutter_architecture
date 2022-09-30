@@ -12,7 +12,7 @@ class WindInfoLocalEntity extends DataMapper<WindInfoEntity> {
   });
 
   int? id;
-  double? speed;
+  String? speed;
   int? deg;
 
   @override

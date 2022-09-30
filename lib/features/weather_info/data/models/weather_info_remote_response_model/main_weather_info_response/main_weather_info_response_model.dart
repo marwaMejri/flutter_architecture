@@ -1,3 +1,4 @@
+import 'package:flutter_architecture/core/utils/helpers/extension_functions/extension_functions.dart';
 import 'package:flutter_architecture/core/utils/mapper/data_mapper.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/main_weather_info_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -31,7 +32,7 @@ class MainWeatherInfoResponseModel extends DataMapper<MainWeatherInfoEntity> {
   @override
   MainWeatherInfoEntity mapToModel() {
     return MainWeatherInfoEntity(
-      temp: temp ?? 0.0,
+      temp: temp?.toCelsius() ?? '',
       feelsLike: feelsLike ?? 0.0,
       humidity: humidity ?? 0,
       pressure: pressure ?? 0,

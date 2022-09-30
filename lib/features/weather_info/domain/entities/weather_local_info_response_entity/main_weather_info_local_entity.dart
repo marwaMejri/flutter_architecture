@@ -16,7 +16,7 @@ class MainWeatherInfoLocalEntity extends DataMapper<MainWeatherInfoEntity> {
   });
 
   int? id;
-  double? temp;
+  String? temp;
   double? feelsLike;
   double? tempMin;
   double? tempMax;

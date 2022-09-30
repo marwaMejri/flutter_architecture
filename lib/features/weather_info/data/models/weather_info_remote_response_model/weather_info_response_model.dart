@@ -1,4 +1,5 @@
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/date_extension_functions.dart';
+import 'package:flutter_architecture/core/utils/helpers/extension_functions/extension_functions.dart';
 import 'package:flutter_architecture/core/utils/mapper/data_mapper.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_remote_response_model/clouds_response/clouds_response_model.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_remote_response_model/coordinate_response/coordinate_response_model.dart';
@@ -10,8 +11,10 @@ import 'package:flutter_architecture/features/weather_info/domain/entities/weath
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/coordinate_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/main_weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/sunset_sunrise_entity.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/wind_info_entity.dart';
+import 'package:flutter_architecture/features/weather_info/utils/enums/weather_type_enum.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'weather_info_response_model.g.dart';
@@ -61,15 +64,19 @@ class WeatherInfoResponseModel extends DataMapper<WeatherInfoEntity> {
 
   @override
   WeatherInfoEntity mapToModel() {
+    final List<WeatherDescriptionEntity>? _weatherDescription =
+        weatherDescription
+            ?.map((WeatherDescriptionResponseModel weatherDescriptionEntity) =>
+                weatherDescriptionEntity.mapToModel())
+            .toList();
+    final WeatherTypeEnum? weatherTypeEnum =
+        _weatherDescription?[0].main?.toWeatherType();
     return WeatherInfoEntity(
       main: mainWeatherData?.mapToModel() ?? MainWeatherInfoEntity(),
       id: id ?? 0,
-      visibility: weatherVisibility ?? 0,
+      visibility: weatherVisibility?.toKM() ?? '',
       clouds: cloudsData?.mapToModel() ?? CloudsEntity(),
-      weather: weatherDescription
-          ?.map((WeatherDescriptionResponseModel weatherDescriptionEntity) =>
-              weatherDescriptionEntity.mapToModel())
-          .toList(),
+      weather: _weatherDescription,
       coord: coordinateData?.mapToModel() ?? CoordinateEntity(),
       cod: cod ?? 0,
       dt: date?.fromTimestampToDate() ?? null,
@@ -78,6 +85,7 @@ class WeatherInfoResponseModel extends DataMapper<WeatherInfoEntity> {
       sys: sunsetAndSunriseData?.mapToModel() ?? SunsetSunriseEntity(),
       timezone: timezone ?? 0,
       wind: windData?.mapToModel() ?? WindInfoEntity(),
+      weatherTheme: weatherTypeEnum.toWeatherTheme(),
     );
   }
 }

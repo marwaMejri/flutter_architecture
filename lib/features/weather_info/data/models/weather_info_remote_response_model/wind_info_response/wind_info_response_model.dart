@@ -1,3 +1,4 @@
+import 'package:flutter_architecture/core/utils/helpers/extension_functions/extension_functions.dart';
 import 'package:flutter_architecture/core/utils/mapper/data_mapper.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/wind_info_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -21,7 +22,7 @@ class WindInfoResponseModel extends DataMapper<WindInfoEntity> {
   WindInfoEntity mapToModel() {
     return WindInfoEntity(
       deg: deg ?? 0,
-      speed: speed ?? 0.0,
+      speed: speed?.toWindSpeed() ?? '',
     );
   }
 }

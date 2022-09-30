@@ -24,7 +24,7 @@ class WeatherInfoLocalEntity extends DataMapper<WeatherInfoEntity> {
   final weather = ToMany<WeatherDescriptionLocalEntity?>();
   String? base;
   final main = ToOne<MainWeatherInfoLocalEntity?>();
-  int? visibility;
+  String? visibility;
   final wind = ToOne<WindInfoLocalEntity?>();
   final clouds = ToOne<CloudsLocalEntity?>();
   String? dt;

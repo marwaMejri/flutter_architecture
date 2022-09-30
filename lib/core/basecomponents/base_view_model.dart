@@ -15,25 +15,6 @@ class BaseViewModel extends ChangeNotifier {
     _toggleLoading.add(show);
   }
 
-  // ApiResultState _viewModelState = const ApiResultState.data(data: '');
-  //
-  // void setState(ApiResultState value) {
-  //   _viewModelState = value;
-  // }
-  //
-  // void setStateAndNotifyListeners(ApiResultState value) {
-  //   _viewModelState = value;
-  //   notifyListeners();
-  // }
-
-  void clearAllObservers() {}
-
-  @override
-  void dispose() {
-    clearAllObservers();
-    super.dispose();
-  }
-
   Future<ApiResultState<Type>?> executeParamsUseCase<Type, Params>(
       BaseParamsUseCase<Type, Params> useCase, Params query) async {
     showLoadingIndicator(true);

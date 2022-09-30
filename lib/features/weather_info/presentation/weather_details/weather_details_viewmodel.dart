@@ -27,10 +27,4 @@ class WeatherDetailsViewModel extends BaseViewModel {
             getWeatherDataByCoordinates, weatherByCoordinatesRequestModel);
     _weatherResult.add(_result);
   }
-
-  @override
-  void clearAllObservers() {
-    super.clearAllObservers();
-    _weatherResult.close();
-  }
 }

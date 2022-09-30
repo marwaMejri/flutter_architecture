@@ -6,7 +6,7 @@ class WindInfoEntity extends Equatable {
     this.deg,
   });
 
-  final double? speed;
+  final String? speed;
   final int? deg;
 
   @override

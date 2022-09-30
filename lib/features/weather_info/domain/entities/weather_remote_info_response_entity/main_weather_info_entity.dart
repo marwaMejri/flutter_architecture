@@ -10,7 +10,7 @@ class MainWeatherInfoEntity extends Equatable {
     this.humidity,
   });
 
-  final double? temp;
+  final String? temp;
   final double? feelsLike;
   final double? tempMin;
   final double? tempMax;

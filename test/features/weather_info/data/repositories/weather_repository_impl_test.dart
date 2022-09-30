@@ -18,12 +18,15 @@ void main() {
   late WeatherRepositoryImpl _sut;
   late MockRemoteDataSource _remoteDatasource;
   late MockWeatherLocalDataSource _localDatasource;
-  setUp(() {
-    _remoteDatasource = MockRemoteDataSource();
-    _localDatasource = MockWeatherLocalDataSource();
-    _sut = WeatherRepositoryImpl(
-        remoteDataSource: _remoteDatasource, localDataSource: _localDatasource);
-  });
+  setUp(
+    () {
+      _remoteDatasource = MockRemoteDataSource();
+      _localDatasource = MockWeatherLocalDataSource();
+      _sut = WeatherRepositoryImpl(
+        remoteDataSource: _remoteDatasource,
+      );
+    },
+  );
   group('test getWeatherDataByCoordinates() when device offline', () {
     final String _cityName = 'Sousse';
     final WeatherInfoResponseModel _weatherInfoResponseModel =

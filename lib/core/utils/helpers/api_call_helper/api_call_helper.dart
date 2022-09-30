@@ -6,7 +6,7 @@ import 'package:flutter_architecture/core/commundomain/entitties/based_api_resul
 import 'package:flutter_architecture/core/utils/constants/app_constants.dart';
 import 'package:flutter_architecture/core/utils/helpers/connectivity_helper/connectivity_checker_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/custom_exceptions/custom_connection_exception.dart';
-import 'package:flutter_architecture/core/utils/helpers/extension_functions/string_extension_functions.dart';
+import 'package:flutter_architecture/core/utils/helpers/extension_functions/extension_functions.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
