@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:flutter_architecture/core/utils/values/colors.dart';
+import 'package:flutter_architecture/core/utils/values/styles.dart';
 
-import '../../../../../../core/utils/values/styles.dart';
 
 class WeatherDetailsHeader extends StatelessWidget {
   const WeatherDetailsHeader({

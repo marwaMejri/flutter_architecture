@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/core/basecomponents/base_responsive_widget.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_ui_helper.dart';
+import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/bottom_navigation_bar/bottom_navigation_custom_background.dart';
 
-import '../../../../../../core/basecomponents/base_responsive_widget.dart';
-import '../../../../../../core/utils/values/colors.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key, this.navigateToAddScreen})

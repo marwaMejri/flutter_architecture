@@ -1,29 +1,29 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/basecomponents/base_responsive_widget.dart';
 import 'package:flutter_architecture/core/basecomponents/base_view_model_view.dart';
+import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_state.dart';
+import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/error_result_model.dart';
+import 'package:flutter_architecture/core/utils/auto_router_setup/auto_router.gr.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_ui_helper.dart';
+import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_by_coordinates_request_model.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/weather_details_viewmodel.dart';
+import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/weather_details_box/weather_details_box_list.dart';
+import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/weather_details_data/weather_details_data_widget.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/weather_details_header/weather_details_header.dart';
 
-import '../../../../../core/commundomain/entitties/based_api_result/api_result_state.dart';
-import '../../../../../core/commundomain/entitties/based_api_result/error_result_model.dart';
-import '../../../../../core/utils/values/colors.dart';
-import '../../add_new_city/view/add_new_city_view.dart';
-import '../widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dart';
-import '../widgets/weather_details_data/weather_details_data_widget.dart';
-
-class WeatherDetails extends StatefulWidget {
-  const WeatherDetails({Key? key}) : super(key: key);
+class WeatherDetailsView extends StatefulWidget {
+  const WeatherDetailsView({Key? key}) : super(key: key);
 
   @override
-  State<WeatherDetails> createState() => _WeatherDetailsState();
+  State<WeatherDetailsView> createState() => _WeatherDetailsViewState();
 }
 
-class _WeatherDetailsState extends State<WeatherDetails> {
+class _WeatherDetailsViewState extends State<WeatherDetailsView> {
   WeatherInfoEntity? _result;
 
   Future<void> _getWeatherData(WeatherDetailsViewModel provider) async {
@@ -37,6 +37,7 @@ class _WeatherDetailsState extends State<WeatherDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final StackRouter appRouter = AutoRouter.of(context);
     return Scaffold(
       body: SafeArea(
         child: BaseViewModelView<WeatherDetailsViewModel>(
@@ -148,13 +149,9 @@ class _WeatherDetailsState extends State<WeatherDetails> {
                           bottom: 0,
                           child: BottomNavigationBarWidget(
                             navigateToAddScreen: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      AddNewCityView(
-                                    weatherInfoEntity: _result,
-                                  ),
+                              appRouter.push(
+                                AddNewCityViewRoute(
+                                  weatherInfoEntity: _result,
                                 ),
                               );
                             },

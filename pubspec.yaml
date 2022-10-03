@@ -48,7 +48,7 @@ dependencies:
   objectbox_flutter_libs: ^1.6.2
   provider: ^6.0.3
   flutter_svg: ^1.1.5
-  shimmer: ^2.0.0
+  auto_route: ^5.0.1
   path_provider: ^2.0.11
 
 dev_dependencies:
@@ -59,6 +59,7 @@ dev_dependencies:
   injectable_generator: ^1.5.4
   json_serializable: ^6.4.1
   objectbox_generator: ^1.6.2
+  auto_route_generator: ^5.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
