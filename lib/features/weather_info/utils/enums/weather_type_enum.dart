@@ -1,5 +1,5 @@
 import 'package:flutter_architecture/core/utils/values/colors.dart';
-import 'package:flutter_architecture/features/weather_info/utils/weather_theme.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_theme_entity.dart';
 
 enum WeatherTypeEnum {
   Thunderstorm,
@@ -42,38 +42,38 @@ extension WeatherTypeEnumExtension on String? {
 }
 
 extension WeatherTypeEnumThemeExtension on WeatherTypeEnum? {
-  WeatherTheme? toWeatherTheme() {
-    WeatherTheme? value;
+  WeatherThemeEntity? toWeatherTheme() {
+    WeatherThemeEntity? value;
     switch (this) {
       case WeatherTypeEnum.Thunderstorm:
       case WeatherTypeEnum.Rain:
-        value = WeatherTheme(
+        value = WeatherThemeEntity(
           firstColor: blue,
           secondColor: lightBlue,
         );
         break;
       case WeatherTypeEnum.Drizzle:
       case WeatherTypeEnum.Snow:
-        value = WeatherTheme(
+        value = WeatherThemeEntity(
           firstColor: cyan,
           secondColor: cyanLight,
         );
         break;
       case WeatherTypeEnum.Clear:
-        value = WeatherTheme(
+        value = WeatherThemeEntity(
           firstColor: orange,
           secondColor: yellow,
         );
         break;
       case WeatherTypeEnum.Clouds:
       case WeatherTypeEnum.other:
-        value = WeatherTheme(
+        value = WeatherThemeEntity(
           firstColor: grey,
           secondColor: lightGrey,
         );
         break;
       default:
-        value = WeatherTheme(
+        value = WeatherThemeEntity(
           firstColor: blue,
           secondColor: lightBlue,
         );

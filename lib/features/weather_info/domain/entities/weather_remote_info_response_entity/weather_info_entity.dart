@@ -5,7 +5,7 @@ import 'package:flutter_architecture/features/weather_info/domain/entities/weath
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/sunset_sunrise_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/wind_info_entity.dart';
-import 'package:flutter_architecture/features/weather_info/utils/weather_theme.dart';
+import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_theme_entity.dart';
 
 class WeatherInfoEntity extends Equatable {
   WeatherInfoEntity({
@@ -38,7 +38,7 @@ class WeatherInfoEntity extends Equatable {
   final int? id;
   final String? name;
   final int? cod;
-  final WeatherTheme? weatherTheme;
+  final WeatherThemeEntity? weatherTheme;
 
   @override
   List<Object?> get props => <Object?>[

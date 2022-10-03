@@ -8,16 +8,18 @@ import 'package:flutter_architecture/features/weather_info/domain/entities/weath
 import 'package:flutter_architecture/features/weather_info/domain/repositories/weather_repository.dart';
 import 'package:injectable/injectable.dart';
 
+import '../datasources/local_datasource/weather_local_datasource.dart';
+
 @Injectable(as: WeatherRepository)
 class WeatherRepositoryImpl implements WeatherRepository {
   WeatherRepositoryImpl({
     required this.remoteDataSource,
-    // required this.localDataSource,
+    required this.localDataSource,
   });
 
   final WeatherRemoteDataSource remoteDataSource;
 
-  // final WeatherLocalDataSource localDataSource;
+  final WeatherLocalDataSource localDataSource;
 
   @override
   Future<ApiResultModel<WeatherInfoEntity?>> getWeatherDataByCity(
@@ -27,9 +29,9 @@ class WeatherRepositoryImpl implements WeatherRepository {
           await remoteDataSource.getWeatherDataByCity(cityName: cityName);
       return _result.when(
         success: (WeatherInfoResponseModel? weatherInfoResponseModel) async {
-          // if (weatherInfoResponseModel != null) {
-          //   await _cacheLocalData(weatherInfoResponseModel);
-          // }
+          if (weatherInfoResponseModel != null) {
+             _cacheLocalData(weatherInfoResponseModel);
+          }
           return ApiResultModel<WeatherInfoEntity?>.success(
             data: weatherInfoResponseModel?.mapToModel(),
           );
@@ -46,13 +48,10 @@ class WeatherRepositoryImpl implements WeatherRepository {
   }
 
   Future<ApiResultModel<WeatherInfoEntity?>> _getLocalWeatherInfo() async {
-    // final WeatherInfoEntity? _localResult =
-    //     await localDataSource.getLastWeatherInfo();
-    // return ApiResultModel<WeatherInfoEntity?>.success(
-    //   data: _localResult,
-    // );
+    final WeatherInfoEntity? _localResult =
+        await localDataSource.getLastWeatherInfo();
     return ApiResultModel<WeatherInfoEntity?>.success(
-      data: WeatherInfoEntity(),
+      data: _localResult,
     );
   }
 
@@ -67,9 +66,9 @@ class WeatherRepositoryImpl implements WeatherRepository {
                   weatherByCoordinatesRequestModel);
       return _result.when(
         success: (WeatherInfoResponseModel? weatherInfoResponseModel) async {
-          // if (weatherInfoResponseModel != null) {
-          //   await _cacheLocalData(weatherInfoResponseModel);
-          // }
+          if (weatherInfoResponseModel != null) {
+             _cacheLocalData(weatherInfoResponseModel);
+          }
           return ApiResultModel<WeatherInfoEntity?>.success(
             data: weatherInfoResponseModel?.mapToModel(),
           );
@@ -85,7 +84,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
     }
   }
 
-// Future<void> _cacheLocalData(WeatherInfoResponseModel? weatherData) async {
-//   await localDataSource.cacheWeatherInfo(weatherData);
-// }
+void _cacheLocalData(WeatherInfoResponseModel? weatherData) {
+   localDataSource.cacheWeatherInfo(weatherData);
+}
 }

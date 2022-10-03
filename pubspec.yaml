@@ -45,9 +45,11 @@ dependencies:
   intl: ^0.17.0
   http: ^0.13.5
   objectbox: ^1.6.2
+  objectbox_flutter_libs: ^1.6.2
   provider: ^6.0.3
   flutter_svg: ^1.1.5
   shimmer: ^2.0.0
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:

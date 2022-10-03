@@ -24,6 +24,7 @@ void main() {
       _localDatasource = MockWeatherLocalDataSource();
       _sut = WeatherRepositoryImpl(
         remoteDataSource: _remoteDatasource,
+        localDataSource: _localDatasource,
       );
     },
   );

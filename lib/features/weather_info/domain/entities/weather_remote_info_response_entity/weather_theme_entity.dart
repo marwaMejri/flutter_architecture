@@ -1,10 +1,10 @@
 import 'dart:ui';
 
-class WeatherTheme {
+class WeatherThemeEntity {
   Color? firstColor;
   Color? secondColor;
 
-  WeatherTheme({
+  WeatherThemeEntity({
     this.firstColor,
     this.secondColor,
   });
