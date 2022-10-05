@@ -18,7 +18,11 @@ import 'package:flutter_architecture/features/weather_info/presentation/weather_
 import 'package:lottie/lottie.dart';
 
 class WeatherDetailsView extends StatefulWidget {
-  const WeatherDetailsView({Key? key}) : super(key: key);
+  const WeatherDetailsView({
+    Key? key,
+    this.weatherInfoEntity,
+  }) : super(key: key);
+  final WeatherInfoEntity? weatherInfoEntity;
 
   @override
   State<WeatherDetailsView> createState() => _WeatherDetailsViewState();
@@ -58,6 +62,14 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.weatherInfoEntity != null) {
+      _result = widget.weatherInfoEntity;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final StackRouter appRouter = AutoRouter.of(context);
     return Scaffold(
@@ -81,7 +93,9 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
                 );
               },
             );
-            await _getWeatherData(provider);
+            if (widget.weatherInfoEntity == null) {
+              await _getWeatherData(provider);
+            }
           },
           buildWidget: (WeatherDetailsViewModel provider) {
             return BaseResponsiveWidget(

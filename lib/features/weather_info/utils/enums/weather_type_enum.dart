@@ -46,6 +46,7 @@ extension WeatherTypeEnumThemeExtension on WeatherTypeEnum? {
     WeatherThemeEntity? value;
     switch (this) {
       case WeatherTypeEnum.Thunderstorm:
+      case WeatherTypeEnum.Clouds:
       case WeatherTypeEnum.Rain:
         value = WeatherThemeEntity(
           firstColor: blue,
@@ -65,7 +66,6 @@ extension WeatherTypeEnumThemeExtension on WeatherTypeEnum? {
           secondColor: yellow,
         );
         break;
-      case WeatherTypeEnum.Clouds:
       case WeatherTypeEnum.other:
         value = WeatherThemeEntity(
           firstColor: grey,

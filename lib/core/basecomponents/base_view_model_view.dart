@@ -9,7 +9,6 @@ import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/res
 import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:provider/provider.dart';
 
-
 class BaseViewModelView<T> extends StatefulWidget {
   const BaseViewModelView({
     Key? key,
@@ -38,16 +37,18 @@ class _BaseViewModelViewState<T> extends State<BaseViewModelView<T>> {
   }
 
   void checkInternetAvailability() {
-    ConnectivityCheckerHelper.listenToConnectivityChanged()
-        .listen((ConnectivityResult connectivityResult) {
-      if (connectivityResult == ConnectivityResult.none) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(commonConnectionFailedMessage),
-          ),
-        );
-      }
-    });
+    ConnectivityCheckerHelper.listenToConnectivityChanged().listen(
+      (ConnectivityResult connectivityResult) {
+        if (connectivityResult == ConnectivityResult.none) {
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(commonConnectionFailedMessage),
+            ),
+          );
+        }
+      },
+    );
   }
 
   void toggleLoadingWidget(T provider) {

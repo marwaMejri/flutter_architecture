@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/basecomponents/base_view_model_view.dart';
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_state.dart';
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/error_result_model.dart';
+import 'package:flutter_architecture/core/utils/auto_router_setup/auto_router.gr.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/extension_functions.dart';
 import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
@@ -78,6 +80,7 @@ class _AddNewCityViewState extends State<AddNewCityView> {
 
   @override
   Widget build(BuildContext context) {
+    final StackRouter _appRouter = AutoRouter.of(context);
     return Scaffold(
       backgroundColor: lightColor,
       body: SafeArea(
@@ -101,6 +104,14 @@ class _AddNewCityViewState extends State<AddNewCityView> {
                     {
                       return _citiesWeatherList.isNotEmpty
                           ? AddNewCityBoxDetailsWidget(
+                              onClickBox:
+                                  (WeatherInfoEntity? weatherInfoEntity) {
+                                _appRouter.push(
+                                  WeatherDetailsViewRoute(
+                                    weatherInfoEntity: weatherInfoEntity,
+                                  ),
+                                );
+                              },
                               weatherInfoEntity: _citiesWeatherList[index - 1],
                             )
                           : Container();
