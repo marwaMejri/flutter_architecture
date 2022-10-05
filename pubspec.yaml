@@ -41,7 +41,7 @@ dependencies:
   get_it: ^7.2.0
   injectable: ^1.5.3
   json_annotation: ^4.7.0
-  connectivity_plus: ^2.3.7
+  connectivity_plus: ^2.3.8
   intl: ^0.17.0
   http: ^0.13.5
   objectbox: ^1.6.2
@@ -50,7 +50,7 @@ dependencies:
   flutter_svg: ^1.1.5
   auto_route: ^5.0.1
   path_provider: ^2.0.11
-
+  lottie: ^1.4.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

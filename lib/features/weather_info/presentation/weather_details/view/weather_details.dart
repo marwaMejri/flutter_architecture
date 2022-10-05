@@ -15,6 +15,7 @@ import 'package:flutter_architecture/features/weather_info/presentation/weather_
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/weather_details_box/weather_details_box_list.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/weather_details_data/weather_details_data_widget.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/weather_details_header/weather_details_header.dart';
+import 'package:lottie/lottie.dart';
 
 class WeatherDetailsView extends StatefulWidget {
   const WeatherDetailsView({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class WeatherDetailsView extends StatefulWidget {
 
 class _WeatherDetailsViewState extends State<WeatherDetailsView> {
   WeatherInfoEntity? _result;
+  bool? _isSuccess;
 
   Future<void> _getWeatherData(WeatherDetailsViewModel provider) async {
     await provider.getWeatherByCoordinates(
@@ -35,132 +37,156 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
     );
   }
 
+  Widget _getWidget(ResponsiveUiConfig responsiveUiConfig) {
+    if (_isSuccess == false) {
+      return ListView.builder(
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            height: responsiveUiConfig.screenHeight,
+            child: Center(
+              child: Lottie.asset(
+                'assets/lottie_animation.json',
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      return Container();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final StackRouter appRouter = AutoRouter.of(context);
     return Scaffold(
+      backgroundColor: lightColor,
       body: SafeArea(
         child: BaseViewModelView<WeatherDetailsViewModel>(
           onInitState: (WeatherDetailsViewModel provider) async {
-            provider.weatherResult.stream
-                .listen((ApiResultState<WeatherInfoEntity?>? result) {
-              result?.when(
-                data: (WeatherInfoEntity? data) {
-                  setState(() {
-                    _result = data;
-                  });
-                },
-                error: (ErrorResultModel error) {},
-              );
-            });
+            provider.weatherResult.stream.listen(
+              (ApiResultState<WeatherInfoEntity?>? result) {
+                result?.when(
+                  data: (WeatherInfoEntity? data) {
+                    setState(() {
+                      _result = data;
+                      _isSuccess = data != null;
+                    });
+                  },
+                  error: (ErrorResultModel error) {
+                    print(error);
+                  },
+                );
+              },
+            );
             await _getWeatherData(provider);
           },
           buildWidget: (WeatherDetailsViewModel provider) {
             return BaseResponsiveWidget(
-                initializeConfig: true,
-                buildWidget: (BuildContext context,
-                    ResponsiveUiConfig responsiveUiConfig) {
-                  return RefreshIndicator(
-                    backgroundColor: lightColor,
-                    color: primaryColor,
-                    triggerMode: RefreshIndicatorTriggerMode.anywhere,
-                    strokeWidth: 2.w,
-                    onRefresh: () async {
-                      _getWeatherData(provider);
-                    },
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        _result != null
-                            ? Container(
-                                width: responsiveUiConfig.screenWidth,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      _result?.weatherTheme?.secondColor ??
-                                          lightBlue,
-                                      _result?.weatherTheme?.firstColor ?? blue,
-                                    ],
-                                  ),
+              initializeConfig: true,
+              buildWidget: (BuildContext context,
+                  ResponsiveUiConfig responsiveUiConfig) {
+                return RefreshIndicator(
+                  backgroundColor: lightColor,
+                  color: primaryColor,
+                  triggerMode: RefreshIndicatorTriggerMode.anywhere,
+                  strokeWidth: 2.w,
+                  onRefresh: () async {
+                    _getWeatherData(provider);
+                  },
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      _result != null
+                          ? Container(
+                              width: responsiveUiConfig.screenWidth,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    _result?.weatherTheme?.secondColor ??
+                                        lightBlue,
+                                    _result?.weatherTheme?.firstColor ?? blue,
+                                  ],
                                 ),
-                                child: ListView.builder(
-                                  itemCount: 5,
-                                  primary: false,
-                                  physics: BouncingScrollPhysics(),
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    switch (index) {
-                                      case 0:
-                                        {
-                                          return WeatherDetailsHeader(
-                                            locationName: _result?.name,
-                                            date: _result?.dt,
-                                          );
-                                        }
-                                      case 1:
-                                        {
-                                          return Align(
-                                            alignment: Alignment.center,
-                                            child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                vertical: 20.h,
-                                              ),
-                                              child: Image.asset(
-                                                'assets/${_result?.weather?[0]?.icon}.png',
-                                                height: 150.h,
-                                                width: 150.w,
-                                                alignment: Alignment.center,
-                                              ),
+                              ),
+                              child: ListView.builder(
+                                itemCount: 5,
+                                primary: false,
+                                physics: BouncingScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) {
+                                  switch (index) {
+                                    case 0:
+                                      {
+                                        return WeatherDetailsHeader(
+                                          locationName: _result?.name,
+                                          date: _result?.dt,
+                                        );
+                                      }
+                                    case 1:
+                                      {
+                                        return Align(
+                                          alignment: Alignment.center,
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                              vertical: 20.h,
                                             ),
-                                          );
-                                        }
-                                      case 2:
-                                        {
-                                          return WeatherDetailsDataWidget(
-                                            weatherDescription: _result
-                                                ?.weather?[0]?.description,
-                                            weatherVisibility:
-                                                _result?.visibility,
-                                            mainWeatherInfoEntity:
-                                                _result?.main,
-                                          );
-                                        }
-                                      case 3:
-                                        {
-                                          return WeatherDetailsBoxList(
-                                            sunsetSunriseEntity: _result?.sys,
-                                            windInfoEntity: _result?.wind,
-                                          );
-                                        }
-                                      default:
-                                        {
-                                          return SizedBox(
-                                            height: 90.h,
-                                          );
-                                        }
-                                    }
-                                  },
-                                ),
-                              )
-                            : Container(),
-                        Positioned(
-                          bottom: 0,
-                          child: BottomNavigationBarWidget(
-                            navigateToAddScreen: () {
-                              appRouter.push(
-                                AddNewCityViewRoute(
-                                  weatherInfoEntity: _result,
-                                ),
-                              );
-                            },
-                          ),
+                                            child: Image.asset(
+                                              'assets/${_result?.weather?[0]?.icon}.png',
+                                              height: 150.h,
+                                              width: 150.w,
+                                              alignment: Alignment.center,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    case 2:
+                                      {
+                                        return WeatherDetailsDataWidget(
+                                          weatherDescription:
+                                              _result?.weather?[0]?.description,
+                                          weatherVisibility:
+                                              _result?.visibility,
+                                          mainWeatherInfoEntity: _result?.main,
+                                        );
+                                      }
+                                    case 3:
+                                      {
+                                        return WeatherDetailsBoxList(
+                                          sunsetSunriseEntity: _result?.sys,
+                                          windInfoEntity: _result?.wind,
+                                        );
+                                      }
+                                    default:
+                                      {
+                                        return SizedBox(
+                                          height: 90.h,
+                                        );
+                                      }
+                                  }
+                                },
+                              ),
+                            )
+                          : _getWidget(responsiveUiConfig),
+                      Positioned(
+                        bottom: 0,
+                        child: BottomNavigationBarWidget(
+                          navigateToAddScreen: () {
+                            appRouter.push(
+                              AddNewCityViewRoute(
+                                weatherInfoEntity: _result,
+                              ),
+                            );
+                          },
                         ),
-                      ],
-                    ),
-                  );
-                });
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
           },
         ),
       ),

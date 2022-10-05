@@ -16,6 +16,10 @@ extension ExtensionsOnString on String {
       ),
     );
   }
+
+  bool isEqual(String? value) {
+    return this.toLowerCase() == value?.toLowerCase();
+  }
 }
 
 extension ExtensionsOnDouble on double? {

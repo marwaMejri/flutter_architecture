@@ -12,7 +12,6 @@ import 'package:flutter_architecture/features/weather_info/domain/entities/weath
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:injectable/injectable.dart';
 
-
 @Injectable(as: WeatherLocalDataSource)
 class WeatherRemoteDataSourceImpl implements WeatherLocalDataSource {
   WeatherRemoteDataSourceImpl(this.appLocalDatabase);
@@ -71,9 +70,13 @@ class WeatherRemoteDataSourceImpl implements WeatherLocalDataSource {
 
   @override
   Future<WeatherInfoEntity?> getLastWeatherInfo() async {
-    final WeatherInfoLocalEntity? weatherInfoLocalData =
-        (await appLocalDatabase.getAll<WeatherInfoLocalEntity>())?.last;
-    final WeatherInfoEntity? _lastInfoData = weatherInfoLocalData?.mapToModel();
-    return _lastInfoData;
+    final List<WeatherInfoLocalEntity>? weatherInfoLocalData =
+        await appLocalDatabase.getAll<WeatherInfoLocalEntity>();
+    if ((weatherInfoLocalData?.length ?? 0) > 0) {
+      final WeatherInfoEntity? _lastInfoData =
+          weatherInfoLocalData?.last.mapToModel();
+      return _lastInfoData;
+    }
+    return null;
   }
 }
