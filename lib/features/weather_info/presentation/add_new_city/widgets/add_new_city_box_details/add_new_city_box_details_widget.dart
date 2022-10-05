@@ -44,32 +44,39 @@ class AddNewCityBoxDetailsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                weatherInfoEntity?.name ?? '',
-                style: poppinsBold.copyWith(
-                  color: primaryColor,
-                  fontSize: 20.w,
+              Flexible(
+                flex: 4,
+                child: Text(
+                  weatherInfoEntity?.name ?? '',
+                  style: poppinsBold.copyWith(
+                    color: primaryColor,
+                    fontSize: 20.w,
+                  ),
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    weatherInfoEntity?.main?.temp ?? '',
-                    style: poppinsRegular.copyWith(
-                      fontSize: 16.w,
-                      color: primaryColor,
+              Flexible(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      weatherInfoEntity?.main?.temp ?? '',
+                      style: poppinsRegular.copyWith(
+                        fontSize: 16.w,
+                        color: primaryColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    weatherInfoEntity?.weather?[0]?.description ?? '',
-                    style: poppinsRegular.copyWith(
-                      fontSize: 16.w,
-                      color: primaryColor,
+                    Text(
+                      weatherInfoEntity?.weather?[0]?.description ?? '',
+                      textAlign: TextAlign.center,
+                      style: poppinsRegular.copyWith(
+                        fontSize: 16.w,
+                        color: primaryColor,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
             ],
           ),
