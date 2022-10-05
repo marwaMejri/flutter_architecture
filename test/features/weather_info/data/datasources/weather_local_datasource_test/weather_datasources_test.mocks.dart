@@ -43,6 +43,15 @@ class MockMockWeatherLocalDataSource extends _i1.Mock
         returnValue: _i3.Future<_i4.WeatherInfoEntity?>.value(),
       ) as _i3.Future<_i4.WeatherInfoEntity?>);
   @override
+  _i3.Future<List<_i4.WeatherInfoEntity?>?> getAllLocalWeathers() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getAllLocalWeathers,
+          [],
+        ),
+        returnValue: _i3.Future<List<_i4.WeatherInfoEntity?>?>.value(),
+      ) as _i3.Future<List<_i4.WeatherInfoEntity?>?>);
+  @override
   void cacheWeatherInfo(
           _i5.WeatherInfoResponseModel? weatherInfoResponseModel) =>
       super.noSuchMethod(

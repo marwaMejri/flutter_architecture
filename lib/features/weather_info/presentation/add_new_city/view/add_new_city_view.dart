@@ -13,9 +13,7 @@ import 'package:flutter_architecture/features/weather_info/presentation/add_new_
 class AddNewCityView extends StatefulWidget {
   const AddNewCityView({
     Key? key,
-    this.weatherInfoEntity,
   }) : super(key: key);
-  final WeatherInfoEntity? weatherInfoEntity;
 
   @override
   State<AddNewCityView> createState() => _AddNewCityViewState();
@@ -28,7 +26,6 @@ class _AddNewCityViewState extends State<AddNewCityView> {
   @override
   void initState() {
     super.initState();
-    _citiesWeatherList.add(widget.weatherInfoEntity);
   }
 
   AddNewCityViewModel? _provider;
@@ -46,47 +43,71 @@ class _AddNewCityViewState extends State<AddNewCityView> {
     return _itemFound;
   }
 
+  void _listenToNewCityData() {
+    _provider?.weatherResult.stream
+        .listen((ApiResultState<WeatherInfoEntity?>? result) {
+      result?.when(
+        data: (WeatherInfoEntity? data) {
+          if (!_citiesWeatherList.any((element) => element?.id == data?.id)) {
+            setState(() {
+              _citiesWeatherList.add(data);
+            });
+          }
+        },
+        error: (ErrorResultModel error) {},
+      );
+    });
+  }
+
+  void _listenToInitialLocalData() {
+    _provider?.weatherLocalResult.stream
+        .listen((ApiResultState<List<WeatherInfoEntity?>?>? result) {
+      result?.when(
+        data: (List<WeatherInfoEntity?>? data) {
+          if (data != null) {
+            if (!mounted) return;
+            setState(() {
+              _citiesWeatherList.addAll(data);
+            });
+          }
+        },
+        error: (ErrorResultModel error) {},
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: lightColor,
       body: SafeArea(
         child: BaseViewModelView<AddNewCityViewModel>(
           onInitState: (AddNewCityViewModel provider) async {
             _provider = provider;
-            provider.weatherResult.stream
-                .listen((ApiResultState<WeatherInfoEntity?>? result) {
-              result?.when(
-                data: (WeatherInfoEntity? data) {
-                  if (!_citiesWeatherList
-                      .any((element) => element?.id == data?.id)) {
-                    setState(() {
-                      _citiesWeatherList.add(data);
-                    });
-                  }
-                },
-                error: (ErrorResultModel error) {},
-              );
-            });
+            _listenToInitialLocalData();
+            _listenToNewCityData();
+            await provider.getAllLocalWeathersData();
           },
           buildWidget: (AddNewCityViewModel provider) {
-            return  ListView.builder(
-                    itemCount: _citiesWeatherList.length + 1,
-                    itemBuilder: (BuildContext context, int index) {
-                      switch (index) {
-                        case 0:
-                          {
-                            return AddNewCityHeaderWidget();
-                          }
-                        default:
-                          {
-                            return widget.weatherInfoEntity != null?AddNewCityBoxDetailsWidget(
+            return ListView.builder(
+              itemCount: _citiesWeatherList.length + 1,
+              itemBuilder: (BuildContext context, int index) {
+                switch (index) {
+                  case 0:
+                    {
+                      return AddNewCityHeaderWidget();
+                    }
+                  default:
+                    {
+                      return _citiesWeatherList.isNotEmpty
+                          ? AddNewCityBoxDetailsWidget(
                               weatherInfoEntity: _citiesWeatherList[index - 1],
-                            ):Container();
-                          }
-                      }
-                    },
-                  );
-
+                            )
+                          : Container();
+                    }
+                }
+              },
+            );
           },
         ),
       ),

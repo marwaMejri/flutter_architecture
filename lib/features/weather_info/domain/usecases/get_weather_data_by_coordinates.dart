@@ -16,7 +16,7 @@ class GetWeatherDataByCoordinates
 
   @override
   Future<ApiResultModel<WeatherInfoEntity?>> call(
-      WeatherByCoordinatesRequestModel weatherByCoordinatesRequestModel) {
+      WeatherByCoordinatesRequestModel? weatherByCoordinatesRequestModel) {
     return weatherRepository.getWeatherDataByCoordinates(
         weatherByCoordinatesRequestModel: weatherByCoordinatesRequestModel);
   }

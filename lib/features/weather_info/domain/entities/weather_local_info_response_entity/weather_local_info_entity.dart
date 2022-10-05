@@ -32,6 +32,7 @@ class WeatherInfoLocalEntity extends DataMapper<WeatherInfoEntity> {
   final sys = ToOne<SunsetSunriseLocalEntity>();
   int? timezone;
   int? id;
+  @Unique(onConflict: ConflictStrategy.replace)
   String? name;
   int? cod;
   final weatherTheme = ToOne<WeatherThemeLocalEntity>();

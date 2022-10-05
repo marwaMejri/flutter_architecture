@@ -52,6 +52,7 @@ class _BaseViewModelViewState<T> extends State<BaseViewModelView<T>> {
 
   void toggleLoadingWidget(T provider) {
     (provider as BaseViewModel).toggleLoading.stream.listen((bool show) {
+      if (!mounted) return;
       setState(() {
         _showLoader = show;
       });

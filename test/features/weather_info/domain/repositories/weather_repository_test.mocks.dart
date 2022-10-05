@@ -94,4 +94,21 @@ class MockMockWeatherRepository extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.ApiResultModel<_i5.WeatherInfoEntity?>>);
+  @override
+  _i4.Future<_i2.ApiResultModel<List<_i5.WeatherInfoEntity?>?>>
+      getAllLocalWeathers() => (super.noSuchMethod(
+            Invocation.method(
+              #getAllLocalWeathers,
+              [],
+            ),
+            returnValue: _i4.Future<
+                    _i2.ApiResultModel<List<_i5.WeatherInfoEntity?>?>>.value(
+                _FakeApiResultModel_0<List<_i5.WeatherInfoEntity?>?>(
+              this,
+              Invocation.method(
+                #getAllLocalWeathers,
+                [],
+              ),
+            )),
+          ) as _i4.Future<_i2.ApiResultModel<List<_i5.WeatherInfoEntity?>?>>);
 }

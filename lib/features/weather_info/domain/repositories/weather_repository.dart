@@ -8,4 +8,6 @@ abstract class WeatherRepository {
 
   Future<ApiResultModel<WeatherInfoEntity?>> getWeatherDataByCity(
       {String? cityName});
+
+  Future<ApiResultModel<List<WeatherInfoEntity?>?>> getAllLocalWeathers();
 }

@@ -15,8 +15,17 @@ class BaseViewModel extends ChangeNotifier {
     _toggleLoading.add(show);
   }
 
+  void onDispose() {}
+
+  @override
+  void dispose() {
+    _toggleLoading.close();
+    onDispose();
+    super.dispose();
+  }
+
   Future<ApiResultState<Type>?> executeParamsUseCase<Type, Params>(
-      BaseParamsUseCase<Type, Params> useCase, Params query) async {
+      {required BaseParamsUseCase<Type, Params> useCase, Params? query}) async {
     showLoadingIndicator(true);
     final ApiResultModel<Type>? _apiResult = await useCase.call(query);
     return _apiResult?.when(

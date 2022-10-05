@@ -5,14 +5,17 @@ import 'package:flutter_architecture/features/weather_info/domain/repositories/w
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetWeatherDataByCity
-    implements BaseParamsUseCase<WeatherInfoEntity?, String> {
-  GetWeatherDataByCity(this.weatherRepository);
+class GetAllLocalWeathers
+    implements BaseParamsUseCase<List<WeatherInfoEntity?>?, NoParams> {
+  GetAllLocalWeathers(this.weatherRepository);
 
   final WeatherRepository weatherRepository;
 
   @override
-  Future<ApiResultModel<WeatherInfoEntity?>> call(String? cityName) {
-    return weatherRepository.getWeatherDataByCity(cityName: cityName);
+  Future<ApiResultModel<List<WeatherInfoEntity?>?>> call(NoParams? params) {
+    return weatherRepository.getAllLocalWeathers();
+
   }
+
+
 }

@@ -24,7 +24,15 @@ class WeatherDetailsViewModel extends BaseViewModel {
           weatherByCoordinatesRequestModel}) async {
     final ApiResultState<WeatherInfoEntity?>? _result =
         await executeParamsUseCase(
-            getWeatherDataByCoordinates, weatherByCoordinatesRequestModel);
+      useCase: getWeatherDataByCoordinates,
+      query: weatherByCoordinatesRequestModel,
+    );
     _weatherResult.add(_result);
+  }
+
+  @override
+  void onDispose() {
+    super.onDispose();
+    _weatherResult.close();
   }
 }

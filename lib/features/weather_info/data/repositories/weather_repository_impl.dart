@@ -30,7 +30,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
       return _result.when(
         success: (WeatherInfoResponseModel? weatherInfoResponseModel) async {
           if (weatherInfoResponseModel != null) {
-             _cacheLocalData(weatherInfoResponseModel);
+            _cacheLocalData(weatherInfoResponseModel);
           }
           return ApiResultModel<WeatherInfoEntity?>.success(
             data: weatherInfoResponseModel?.mapToModel(),
@@ -43,11 +43,11 @@ class WeatherRepositoryImpl implements WeatherRepository {
         },
       );
     } on CustomConnectionException catch (_) {
-      return await _getLocalWeatherInfo();
+      return await _getLastLocalWeatherInfo();
     }
   }
 
-  Future<ApiResultModel<WeatherInfoEntity?>> _getLocalWeatherInfo() async {
+  Future<ApiResultModel<WeatherInfoEntity?>> _getLastLocalWeatherInfo() async {
     final WeatherInfoEntity? _localResult =
         await localDataSource.getLastWeatherInfo();
     return ApiResultModel<WeatherInfoEntity?>.success(
@@ -67,7 +67,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
       return _result.when(
         success: (WeatherInfoResponseModel? weatherInfoResponseModel) async {
           if (weatherInfoResponseModel != null) {
-             _cacheLocalData(weatherInfoResponseModel);
+            _cacheLocalData(weatherInfoResponseModel);
           }
           return ApiResultModel<WeatherInfoEntity?>.success(
             data: weatherInfoResponseModel?.mapToModel(),
@@ -80,11 +80,21 @@ class WeatherRepositoryImpl implements WeatherRepository {
         },
       );
     } on CustomConnectionException catch (_) {
-      return await _getLocalWeatherInfo();
+      return await _getLastLocalWeatherInfo();
     }
   }
 
-void _cacheLocalData(WeatherInfoResponseModel? weatherData) {
-   localDataSource.cacheWeatherInfo(weatherData);
-}
+  void _cacheLocalData(WeatherInfoResponseModel? weatherData) {
+    localDataSource.cacheWeatherInfo(weatherData);
+  }
+
+  @override
+  Future<ApiResultModel<List<WeatherInfoEntity?>?>>
+      getAllLocalWeathers() async {
+    final List<WeatherInfoEntity?>? _result =
+        await localDataSource.getAllLocalWeathers();
+    return ApiResultModel<List<WeatherInfoEntity?>?>.success(
+      data: _result,
+    );
+  }
 }

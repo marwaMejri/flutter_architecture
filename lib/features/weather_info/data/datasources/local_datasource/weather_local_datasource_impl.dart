@@ -79,4 +79,17 @@ class WeatherRemoteDataSourceImpl implements WeatherLocalDataSource {
     }
     return null;
   }
+
+  @override
+  Future<List<WeatherInfoEntity?>?> getAllLocalWeathers() async {
+    final List<WeatherInfoLocalEntity>? weatherInfoLocalData =
+        await appLocalDatabase.getAll<WeatherInfoLocalEntity>();
+    if ((weatherInfoLocalData?.length ?? 0) > 0) {
+      final List<WeatherInfoEntity?>? _localData = weatherInfoLocalData
+          ?.map((WeatherInfoLocalEntity element) => element.mapToModel())
+          .toList();
+      return _localData;
+    }
+    return null;
+  }
 }

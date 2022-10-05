@@ -69,6 +69,7 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
               (ApiResultState<WeatherInfoEntity?>? result) {
                 result?.when(
                   data: (WeatherInfoEntity? data) {
+                    if (!mounted) return;
                     setState(() {
                       _result = data;
                       _isSuccess = data != null;
@@ -175,9 +176,7 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
                         child: BottomNavigationBarWidget(
                           navigateToAddScreen: () {
                             appRouter.push(
-                              AddNewCityViewRoute(
-                                weatherInfoEntity: _result,
-                              ),
+                              AddNewCityViewRoute(),
                             );
                           },
                         ),

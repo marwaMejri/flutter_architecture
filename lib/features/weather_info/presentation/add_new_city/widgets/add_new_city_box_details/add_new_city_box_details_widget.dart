@@ -45,7 +45,7 @@ class AddNewCityBoxDetailsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Flexible(
-                flex: 4,
+                flex: 2,
                 child: Text(
                   weatherInfoEntity?.name ?? '',
                   style: poppinsBold.copyWith(
