@@ -8,7 +8,7 @@ import 'package:flutter_architecture/core/utils/auto_router_setup/auto_router.gr
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_ui_helper.dart';
 import 'package:flutter_architecture/core/utils/values/colors.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_by_coordinates_request_model.dart';
+import 'package:flutter_architecture/features/weather_info/utils/requests_models/weather_by_coordinates_request_model.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/weather_details_viewmodel.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dart';

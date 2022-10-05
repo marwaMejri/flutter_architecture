@@ -6,7 +6,7 @@ import 'package:flutter_architecture/core/utils/helpers/custom_exceptions/custom
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/extension_functions.dart';
 import 'package:flutter_architecture/features/weather_info/data/datasources/remote_datasource/weather_remote_datasource.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_remote_response_model/weather_info_response_model.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_by_coordinates_request_model.dart';
+import 'package:flutter_architecture/features/weather_info/utils/requests_models/weather_by_coordinates_request_model.dart';
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 
