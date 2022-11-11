@@ -15,23 +15,23 @@ class SunsetSunriseResponseModel extends DataMapper<SunsetSunriseEntity> {
     this.sunset,
   });
 
+  factory SunsetSunriseResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$SunsetSunriseResponseModelFromJson(json);
   final int? type;
   final int? id;
   final String? country;
   final int? sunrise;
   final int? sunset;
 
-  factory SunsetSunriseResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$SunsetSunriseResponseModelFromJson(json);
 
   @override
   SunsetSunriseEntity mapToModel() {
     return SunsetSunriseEntity(
-      sunrise: sunrise?.fromTimestampToTime() ?? null,
+      sunrise: sunrise?.fromTimestampToTime(),
       type: type ?? 0,
       id: id ?? 0,
       country: country ?? '',
-      sunset: sunset?.fromTimestampToTime() ?? null,
+      sunset: sunset?.fromTimestampToTime(),
     );
   }
 }

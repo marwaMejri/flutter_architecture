@@ -16,6 +16,9 @@ class MainWeatherInfoResponseModel extends DataMapper<MainWeatherInfoEntity> {
     this.humidity,
   });
 
+  factory MainWeatherInfoResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$MainWeatherInfoResponseModelFromJson(json);
+
   final double? temp;
   @JsonKey(name: 'feels_like')
   final double? feelsLike;
@@ -25,9 +28,6 @@ class MainWeatherInfoResponseModel extends DataMapper<MainWeatherInfoEntity> {
   final double? tempMax;
   final int? pressure;
   final int? humidity;
-
-  factory MainWeatherInfoResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$MainWeatherInfoResponseModelFromJson(json);
 
   @override
   MainWeatherInfoEntity mapToModel() {

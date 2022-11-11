@@ -5,7 +5,7 @@ import 'package:flutter_architecture/core/utils/values/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherSingleInfo extends StatelessWidget {
-  WeatherSingleInfo({
+  const WeatherSingleInfo({super.key,
     this.infoTitle,
     this.infoDescription,
     this.assetString,

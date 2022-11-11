@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class WindInfoEntity extends Equatable {
-  WindInfoEntity({
+  const WindInfoEntity({
     this.speed,
     this.deg,
   });

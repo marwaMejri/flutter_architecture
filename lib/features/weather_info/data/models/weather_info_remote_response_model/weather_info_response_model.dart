@@ -35,7 +35,8 @@ class WeatherInfoResponseModel extends DataMapper<WeatherInfoEntity> {
       this.id,
       this.cityName,
       this.cod});
-
+  factory WeatherInfoResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$WeatherInfoResponseModelFromJson(json);
   @JsonKey(name: 'coord')
   CoordinateResponseModel? coordinateData;
   @JsonKey(name: 'weather')
@@ -59,8 +60,7 @@ class WeatherInfoResponseModel extends DataMapper<WeatherInfoEntity> {
   int? cod;
   String? base;
 
-  factory WeatherInfoResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$WeatherInfoResponseModelFromJson(json);
+
 
   @override
   WeatherInfoEntity mapToModel() {
@@ -72,14 +72,14 @@ class WeatherInfoResponseModel extends DataMapper<WeatherInfoEntity> {
     final WeatherTypeEnum? weatherTypeEnum =
         _weatherDescription?[0].main?.toWeatherType();
     return WeatherInfoEntity(
-      main: mainWeatherData?.mapToModel() ?? MainWeatherInfoEntity(),
+      main: mainWeatherData?.mapToModel() ?? const MainWeatherInfoEntity(),
       id: id ?? 0,
       visibility: weatherVisibility?.toKM() ?? '',
-      clouds: cloudsData?.mapToModel() ?? CloudsEntity(),
+      clouds: cloudsData?.mapToModel() ?? const CloudsEntity(),
       weather: _weatherDescription,
-      coord: coordinateData?.mapToModel() ?? CoordinateEntity(),
+      coord: coordinateData?.mapToModel() ?? const CoordinateEntity(),
       cod: cod ?? 0,
-      dt: date?.fromTimestampToDate() ?? null,
+      dt: date?.fromTimestampToDate(),
       name: cityName ?? '',
       base: base ?? '',
       sys: sunsetAndSunriseData?.mapToModel() ?? SunsetSunriseEntity(),

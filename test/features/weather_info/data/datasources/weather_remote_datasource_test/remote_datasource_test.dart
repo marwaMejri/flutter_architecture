@@ -17,15 +17,15 @@ void main() {
     _sut = WeatherRemoteDataSourceImpl(_apiCallHelper);
   });
   group('test getWeatherDataByCity()', () {
-    final String _cityName = 'Sousse';
-    final Map<String, dynamic> _params = {
+    const String _cityName = 'Sousse';
+    final Map<String, dynamic> _params = <String, dynamic>{
       cityNameKey: _cityName,
       appIdKey: appIdValue
     };
     void _arrangeResponse() {
       when(_apiCallHelper.getWS(uri: getWeatherDetails, params: _params))
           .thenAnswer((_) async {
-        final _response = http.Response(
+        final http.Response _response = http.Response(
           File('test_assets/weather_info_json_data.json').readAsStringSync(),
           200,
         );

@@ -17,25 +17,25 @@ void main() {
     _sut = GetWeatherDataByCity(_mockWeatherRepository);
   });
   group('test getWeatherDataByCity() use case', () {
-    final String _cityName = 'sousse';
+    const String _cityName = 'sousse';
 
-    final WeatherInfoEntity _mockedResult = WeatherInfoEntity(
+    const WeatherInfoEntity _mockedResult = WeatherInfoEntity(
       coord: CoordinateEntity(lon: 10.637, lat: 35.8254),
       clouds: CloudsEntity(all: 0),
       name: _cityName,
       weather: <WeatherDescriptionEntity>[
         WeatherDescriptionEntity(
           id: 800,
-          main: "Clear",
-          description: "clear sky",
-          icon: "01d",
+          main: 'Clear',
+          description: 'clear sky',
+          icon: '01d',
         ),
       ],
     );
     void _arrangeResponse() {
       when(_mockWeatherRepository.getWeatherDataByCity(cityName: _cityName))
           .thenAnswer((_) async {
-        return ApiResultModel<WeatherInfoEntity>.success(data: _mockedResult);
+        return const ApiResultModel<WeatherInfoEntity>.success(data: _mockedResult);
       });
     }
 
@@ -49,7 +49,7 @@ void main() {
         //assert
         expect(
           result,
-          ApiResultModel<WeatherInfoEntity>.success(data: _mockedResult),
+          const ApiResultModel<WeatherInfoEntity>.success(data: _mockedResult),
         );
       },
     );

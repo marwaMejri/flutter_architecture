@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class SunsetSunriseEntity extends Equatable {
-  SunsetSunriseEntity({
+  const SunsetSunriseEntity({
     this.type,
     this.id,
     this.country,

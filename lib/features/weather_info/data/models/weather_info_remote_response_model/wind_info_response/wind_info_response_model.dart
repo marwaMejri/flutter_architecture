@@ -12,11 +12,11 @@ class WindInfoResponseModel extends DataMapper<WindInfoEntity> {
     this.deg,
   });
 
+  factory WindInfoResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$WindInfoResponseModelFromJson(json);
   final double? speed;
   final int? deg;
 
-  factory WindInfoResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$WindInfoResponseModelFromJson(json);
 
   @override
   WindInfoEntity mapToModel() {

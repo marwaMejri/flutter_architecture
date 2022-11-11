@@ -14,13 +14,14 @@ class WeatherDescriptionResponseModel
     this.icon,
   });
 
+  factory WeatherDescriptionResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$WeatherDescriptionResponseModelFromJson(json);
+
   final int? id;
   final String? main;
   final String? description;
   final String? icon;
 
-  factory WeatherDescriptionResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$WeatherDescriptionResponseModelFromJson(json);
 
   @override
   WeatherDescriptionEntity mapToModel() {

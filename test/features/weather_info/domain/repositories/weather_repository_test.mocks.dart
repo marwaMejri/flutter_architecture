@@ -7,10 +7,10 @@ import 'dart:async' as _i4;
 
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_model.dart'
     as _i2;
-import 'package:flutter_architecture/features/weather_info/utils/requests_models/weather_by_coordinates_request_model.dart'
-    as _i6;
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart'
     as _i5;
+import 'package:flutter_architecture/features/weather_info/utils/requests_models/weather_by_coordinates_request_model.dart'
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 import 'weather_repository_test.dart' as _i3;

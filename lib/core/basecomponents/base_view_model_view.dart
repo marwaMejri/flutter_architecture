@@ -40,9 +40,11 @@ class _BaseViewModelViewState<T> extends State<BaseViewModelView<T>> {
     ConnectivityCheckerHelper.listenToConnectivityChanged().listen(
       (ConnectivityResult connectivityResult) {
         if (connectivityResult == ConnectivityResult.none) {
-          if (!mounted) return;
+          if (!mounted) {
+            return;
+          }
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(commonConnectionFailedMessage),
             ),
           );
@@ -53,7 +55,9 @@ class _BaseViewModelViewState<T> extends State<BaseViewModelView<T>> {
 
   void toggleLoadingWidget(T provider) {
     (provider as BaseViewModel).toggleLoading.stream.listen((bool show) {
-      if (!mounted) return;
+      if (!mounted) {
+        return;
+      }
       setState(() {
         _showLoader = show;
       });

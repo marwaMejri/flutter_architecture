@@ -19,8 +19,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
         return Stack(
           clipBehavior: Clip.none,
           alignment: Alignment.center,
-          children: [
-            Container(
+          children: <Widget>[
+            SizedBox(
               height: 80.w,
               width: responsiveUiConfig.screenWidth,
               child: CustomPaint(

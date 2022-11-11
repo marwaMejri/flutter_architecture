@@ -17,7 +17,7 @@ class BoxInfoItemWidget extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        text: '${boxInfoKey}: ',
+        text: '$boxInfoKey: ',
         style: poppinsRegular.copyWith(
           color: lightColor,
           fontSize: 15.w,

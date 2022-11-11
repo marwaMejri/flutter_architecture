@@ -1,14 +1,13 @@
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_model.dart';
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/error_result_model.dart';
 import 'package:flutter_architecture/core/utils/helpers/custom_exceptions/custom_connection_exception.dart';
+import 'package:flutter_architecture/features/weather_info/data/datasources/local_datasource/weather_local_datasource.dart';
 import 'package:flutter_architecture/features/weather_info/data/datasources/remote_datasource/weather_remote_datasource.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_remote_response_model/weather_info_response_model.dart';
-import 'package:flutter_architecture/features/weather_info/utils/requests_models/weather_by_coordinates_request_model.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/repositories/weather_repository.dart';
+import 'package:flutter_architecture/features/weather_info/utils/requests_models/weather_by_coordinates_request_model.dart';
 import 'package:injectable/injectable.dart';
-
-import '../datasources/local_datasource/weather_local_datasource.dart';
 
 @Injectable(as: WeatherRepository)
 class WeatherRepositoryImpl implements WeatherRepository {
@@ -43,7 +42,9 @@ class WeatherRepositoryImpl implements WeatherRepository {
         },
       );
     } on CustomConnectionException catch (_) {
-      return await _getLastLocalWeatherInfo();
+      final ApiResultModel<WeatherInfoEntity?> _result =
+          await _getLastLocalWeatherInfo();
+      return _result;
     }
   }
 
@@ -80,7 +81,9 @@ class WeatherRepositoryImpl implements WeatherRepository {
         },
       );
     } on CustomConnectionException catch (_) {
-      return await _getLastLocalWeatherInfo();
+      final ApiResultModel<WeatherInfoEntity?> _result =
+          await _getLastLocalWeatherInfo();
+      return _result;
     }
   }
 

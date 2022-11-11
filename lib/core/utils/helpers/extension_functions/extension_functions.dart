@@ -9,7 +9,7 @@ extension ExtensionsOnString on String {
       this,
     ).replace(
       queryParameters: params?.map(
-        (key, value) => MapEntry(
+        (String key, dynamic value) => MapEntry<String,dynamic>(
           key,
           value.toString(),
         ),
@@ -18,14 +18,14 @@ extension ExtensionsOnString on String {
   }
 
   bool isEqual(String? value) {
-    return this.toLowerCase() == value?.toLowerCase();
+    return toLowerCase() == value?.toLowerCase();
   }
 }
 
 extension ExtensionsOnDouble on double? {
   String? toWindSpeed() {
     if (this != null) {
-      return '${this.toString()}km/h';
+      return '${toString()}km/h';
     }
     return null;
   }
@@ -33,7 +33,7 @@ extension ExtensionsOnDouble on double? {
   String? toCelsius() {
     if (this != null) {
       final NumberFormat numberFormat = NumberFormat('###.##', 'en_US');
-      final double value = (this! - 273.15);
+      final double value = this! - 273.15;
       return '${numberFormat.format(value)}°';
     }
     return null;
@@ -51,6 +51,6 @@ extension ExtensionsOnInt on int? {
 
 extension ExtensionsOnHttpResponse on Response {
   dynamic decodeJson() {
-    return jsonDecode(this.body);
+    return jsonDecode(body);
   }
 }

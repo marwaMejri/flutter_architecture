@@ -17,12 +17,12 @@ class AddNewCityViewModel extends BaseViewModel {
   final GetWeatherDataByCity getWeatherDataByCity;
   final GetAllLocalWeathers getAllLocalWeathers;
 
-  StreamController<ApiResultState<WeatherInfoEntity?>?> _weatherResult =
+  final StreamController<ApiResultState<WeatherInfoEntity?>?> _weatherResult =
       StreamController<ApiResultState<WeatherInfoEntity?>?>.broadcast();
 
   StreamController<ApiResultState<WeatherInfoEntity?>?> get weatherResult =>
       _weatherResult;
-  StreamController<ApiResultState<List<WeatherInfoEntity?>?>?>
+  final StreamController<ApiResultState<List<WeatherInfoEntity?>?>?>
       _weatherLocalResult =
       StreamController<ApiResultState<List<WeatherInfoEntity?>?>?>.broadcast();
 

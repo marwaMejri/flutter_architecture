@@ -11,11 +11,11 @@ class CoordinateResponseModel extends DataMapper<CoordinateEntity> {
     this.lat,
   });
 
-  final double? lon;
-  final double? lat;
-
   factory CoordinateResponseModel.fromJson(Map<String, dynamic> json) =>
       _$CoordinateResponseModelFromJson(json);
+
+  final double? lon;
+  final double? lat;
 
   @override
   CoordinateEntity mapToModel() {

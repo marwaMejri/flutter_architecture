@@ -7,5 +7,5 @@ abstract class BaseParamsUseCase<Type, Request> {
 
 class NoParams extends Equatable {
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }

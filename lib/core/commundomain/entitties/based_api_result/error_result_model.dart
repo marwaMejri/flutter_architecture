@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class ErrorResultModel extends Equatable {
-  ErrorResultModel({
+  const ErrorResultModel({
     this.statusCode,
     this.message,
   });

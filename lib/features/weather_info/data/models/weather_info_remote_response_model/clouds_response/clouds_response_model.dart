@@ -10,10 +10,10 @@ class CloudsResponseModel extends DataMapper<CloudsEntity> {
     this.all,
   });
 
-  final int? all;
-
   factory CloudsResponseModel.fromJson(Map<String, dynamic> json) =>
       _$CloudsResponseModelFromJson(json);
+
+  final int? all;
 
   @override
   CloudsEntity mapToModel() {

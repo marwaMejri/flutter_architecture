@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class BottomNavigationCustomBackground extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Path path = Path();
-    Paint paint = Paint();
+    final Path path = Path();
+    final Paint paint = Paint();
     paint.style = PaintingStyle.fill;
     paint.color = Colors.white;
     path.moveTo(0, size.height);

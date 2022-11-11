@@ -29,13 +29,13 @@ void main() {
     },
   );
   group('test getWeatherDataByCoordinates() when device offline', () {
-    final String _cityName = 'Sousse';
+    const String _cityName = 'Sousse';
     final WeatherInfoResponseModel _weatherInfoResponseModel =
         WeatherInfoResponseModel(
       cod: 200,
       date: 1663066385,
       sunsetAndSunriseData: SunsetSunriseResponseModel(
-        country: "TN",
+        country: 'TN',
         id: 1193,
         type: 1,
         sunrise: 1663045105,
@@ -43,7 +43,7 @@ void main() {
       ),
       timezone: 3600,
       id: 2464915,
-      base: "stations",
+      base: 'stations',
       cityName: 'Sousse',
       mainWeatherData: MainWeatherInfoResponseModel(
         temp: 304.03,
@@ -61,9 +61,9 @@ void main() {
       weatherDescription: <WeatherDescriptionResponseModel>[
         WeatherDescriptionResponseModel(
           id: 801,
-          main: "Clouds",
-          description: "few clouds",
-          icon: "02d",
+          main: 'Clouds',
+          description: 'few clouds',
+          icon: '02d',
         ),
       ],
       coordinateData: CoordinateResponseModel(lon: 10.637, lat: 35.8254),

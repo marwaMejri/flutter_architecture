@@ -28,7 +28,8 @@ class ApiCallHelper {
   }
 
   Future<bool> _getConnectionState() async {
-    return await connectivityCheckerHelper.checkConnectivity();
+    final bool _result = await connectivityCheckerHelper.checkConnectivity();
+    return _result;
   }
 
   ///@[params] should be added to the url as the api params
@@ -41,7 +42,7 @@ class ApiCallHelper {
     _sharedDefaultHeader.addAll(headers);
     if (await _getConnectionState()) {
       try {
-        String _url = '$baseUrl$uri';
+        final String _url = '$baseUrl$uri';
         final http.Response response = await http
             .get(_url.parseUri(params: params), headers: _sharedDefaultHeader)
             .timeout(timeOutDuration);
@@ -56,7 +57,7 @@ class ApiCallHelper {
           );
         }
       } on TimeoutException catch (_) {
-        return ApiResultModel<http.Response>.failure(
+        return const ApiResultModel<http.Response>.failure(
           errorResultEntity: ErrorResultModel(
             message: commonErrorUnexpectedMessage,
             statusCode: timeoutRequestStatusCode,

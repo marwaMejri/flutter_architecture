@@ -22,7 +22,7 @@ class AddNewCityView extends StatefulWidget {
 }
 
 class _AddNewCityViewState extends State<AddNewCityView> {
-  List<WeatherInfoEntity?> _citiesWeatherList = <WeatherInfoEntity?>[];
+  final List<WeatherInfoEntity?> _citiesWeatherList = <WeatherInfoEntity?>[];
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -50,7 +50,7 @@ class _AddNewCityViewState extends State<AddNewCityView> {
         .listen((ApiResultState<WeatherInfoEntity?>? result) {
       result?.when(
         data: (WeatherInfoEntity? data) {
-          if (!_citiesWeatherList.any((element) => element?.id == data?.id)) {
+          if (!_citiesWeatherList.any((WeatherInfoEntity? element) => element?.id == data?.id)) {
             setState(() {
               _citiesWeatherList.add(data);
             });
@@ -67,7 +67,9 @@ class _AddNewCityViewState extends State<AddNewCityView> {
       result?.when(
         data: (List<WeatherInfoEntity?>? data) {
           if (data != null) {
-            if (!mounted) return;
+            if (!mounted) {
+              return;
+            }
             setState(() {
               _citiesWeatherList.addAll(data);
             });
@@ -98,7 +100,7 @@ class _AddNewCityViewState extends State<AddNewCityView> {
                 switch (index) {
                   case 0:
                     {
-                      return AddNewCityHeaderWidget();
+                      return const AddNewCityHeaderWidget();
                     }
                   default:
                     {
@@ -123,7 +125,7 @@ class _AddNewCityViewState extends State<AddNewCityView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
         backgroundColor: orange,

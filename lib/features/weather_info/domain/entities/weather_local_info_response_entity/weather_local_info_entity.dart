@@ -21,21 +21,21 @@ class WeatherInfoLocalEntity extends DataMapper<WeatherInfoEntity> {
     this.cod,
   });
 
-  final coord = ToOne<CoordinateLocalEntity>();
-  final weather = ToMany<WeatherDescriptionLocalEntity>();
+  final ToOne<CoordinateLocalEntity> coord = ToOne<CoordinateLocalEntity>();
+  final ToMany<WeatherDescriptionLocalEntity> weather = ToMany<WeatherDescriptionLocalEntity>();
   String? base;
-  final main = ToOne<MainWeatherInfoLocalEntity>();
+  final ToOne<MainWeatherInfoLocalEntity> main = ToOne<MainWeatherInfoLocalEntity>();
   String? visibility;
-  final wind = ToOne<WindInfoLocalEntity>();
-  final clouds = ToOne<CloudsLocalEntity>();
+  final ToOne<WindInfoLocalEntity> wind = ToOne<WindInfoLocalEntity>();
+  final ToOne<CloudsLocalEntity> clouds = ToOne<CloudsLocalEntity>();
   String? dt;
-  final sys = ToOne<SunsetSunriseLocalEntity>();
+  final ToOne<SunsetSunriseLocalEntity> sys = ToOne<SunsetSunriseLocalEntity>();
   int? timezone;
   int? id;
   @Unique(onConflict: ConflictStrategy.replace)
   String? name;
   int? cod;
-  final weatherTheme = ToOne<WeatherThemeLocalEntity>();
+  final ToOne<WeatherThemeLocalEntity> weatherTheme = ToOne<WeatherThemeLocalEntity>();
 
   @override
   WeatherInfoEntity mapToModel() {
@@ -47,7 +47,7 @@ class WeatherInfoLocalEntity extends DataMapper<WeatherInfoEntity> {
       weatherTheme: weatherTheme.target?.mapToModel(),
       name: name,
       coord: coord.target?.mapToModel(),
-      weather: weather.map((element) => element.mapToModel()).toList(),
+      weather: weather.map((WeatherDescriptionLocalEntity element) => element.mapToModel()).toList(),
       clouds: clouds.target?.mapToModel(),
       dt: dt,
       main: main.target?.mapToModel(),

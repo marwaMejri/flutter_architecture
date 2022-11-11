@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class MainWeatherInfoEntity extends Equatable {
-  MainWeatherInfoEntity({
+  const MainWeatherInfoEntity({
     this.temp,
     this.feelsLike,
     this.tempMin,

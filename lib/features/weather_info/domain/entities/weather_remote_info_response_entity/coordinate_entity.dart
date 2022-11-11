@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 
 class CoordinateEntity extends Equatable {
-  CoordinateEntity({
+  const CoordinateEntity({
     this.lon,
     this.lat,
   });
