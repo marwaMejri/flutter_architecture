@@ -13,7 +13,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final WeatherInfoResponseModel _weatherInfoResponseModel =
       WeatherInfoResponseModel(
-    cod: 200,
     date: 1663066385,
     sunsetAndSunriseData: SunsetSunriseResponseModel(
       country: 'TN',
@@ -24,7 +23,6 @@ void main() {
     ),
     timezone: 3600,
     id: 2464915,
-    base: 'stations',
     cityName: 'Sousse',
     mainWeatherData: MainWeatherInfoResponseModel(
       temp: 304.03,
@@ -53,7 +51,7 @@ void main() {
     'should be a subclass of WeatherInfoEntity()',
     () async {
       //assert
-      expect(_weatherInfoResponseModel.mapToModel(),
+      expect(_weatherInfoResponseModel.mapToEntity(),
           isA<WeatherInfoEntity>());
     },
   );
@@ -68,8 +66,8 @@ void main() {
         final WeatherInfoResponseModel result =
             WeatherInfoResponseModel.fromJson(_jsonMap);
         //assert
-        expect(result.mapToModel(),
-            _weatherInfoResponseModel.mapToModel());
+        expect(result.mapToEntity(),
+            _weatherInfoResponseModel.mapToEntity());
       },
     );
   });

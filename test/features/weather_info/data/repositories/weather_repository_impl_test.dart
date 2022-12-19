@@ -32,7 +32,6 @@ void main() {
     const String _cityName = 'Sousse';
     final WeatherInfoResponseModel _weatherInfoResponseModel =
         WeatherInfoResponseModel(
-      cod: 200,
       date: 1663066385,
       sunsetAndSunriseData: SunsetSunriseResponseModel(
         country: 'TN',
@@ -43,7 +42,6 @@ void main() {
       ),
       timezone: 3600,
       id: 2464915,
-      base: 'stations',
       cityName: 'Sousse',
       mainWeatherData: MainWeatherInfoResponseModel(
         temp: 304.03,
@@ -88,7 +86,7 @@ void main() {
         expect(
           result,
           ApiResultModel<WeatherInfoEntity?>.success(
-              data: _weatherInfoResponseModel.mapToModel()),
+              data: _weatherInfoResponseModel.mapToEntity()),
         );
       },
     );

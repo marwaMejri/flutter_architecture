@@ -30,7 +30,7 @@ class MainWeatherInfoResponseModel extends DataMapper<MainWeatherInfoEntity> {
   final int? humidity;
 
   @override
-  MainWeatherInfoEntity mapToModel() {
+  MainWeatherInfoEntity mapToEntity() {
     return MainWeatherInfoEntity(
       temp: temp?.toCelsius() ?? '',
       feelsLike: feelsLike ?? 0.0,

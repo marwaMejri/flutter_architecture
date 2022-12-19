@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'api_result_state.dart';
 
@@ -24,8 +24,8 @@ mixin _$ApiResultState<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(ErrorResultModel errorResultModel)? error,
+    TResult? Function(T data)? data,
+    TResult? Function(ErrorResultModel errorResultModel)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$ApiResultState<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Data<T> value)? data,
-    TResult Function(Error<T> value)? error,
+    TResult? Function(Data<T> value)? data,
+    TResult? Function(Error<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,42 +60,42 @@ mixin _$ApiResultState<T> {
 abstract class $ApiResultStateCopyWith<T, $Res> {
   factory $ApiResultStateCopyWith(
           ApiResultState<T> value, $Res Function(ApiResultState<T>) then) =
-      _$ApiResultStateCopyWithImpl<T, $Res>;
+      _$ApiResultStateCopyWithImpl<T, $Res, ApiResultState<T>>;
 }
 
 /// @nodoc
-class _$ApiResultStateCopyWithImpl<T, $Res>
+class _$ApiResultStateCopyWithImpl<T, $Res, $Val extends ApiResultState<T>>
     implements $ApiResultStateCopyWith<T, $Res> {
   _$ApiResultStateCopyWithImpl(this._value, this._then);
 
-  final ApiResultState<T> _value;
   // ignore: unused_field
-  final $Res Function(ApiResultState<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
 abstract class _$$DataCopyWith<T, $Res> {
   factory _$$DataCopyWith(_$Data<T> value, $Res Function(_$Data<T>) then) =
       __$$DataCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({T data});
 }
 
 /// @nodoc
 class __$$DataCopyWithImpl<T, $Res>
-    extends _$ApiResultStateCopyWithImpl<T, $Res>
+    extends _$ApiResultStateCopyWithImpl<T, $Res, _$Data<T>>
     implements _$$DataCopyWith<T, $Res> {
   __$$DataCopyWithImpl(_$Data<T> _value, $Res Function(_$Data<T>) _then)
-      : super(_value, (v) => _then(v as _$Data<T>));
+      : super(_value, _then);
 
-  @override
-  _$Data<T> get _value => super._value as _$Data<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? data = freezed,
   }) {
     return _then(_$Data<T>(
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T,
@@ -130,6 +130,7 @@ class _$Data<T> implements Data<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$DataCopyWith<T, _$Data<T>> get copyWith =>
       __$$DataCopyWithImpl<T, _$Data<T>>(this, _$identity);
 
@@ -145,8 +146,8 @@ class _$Data<T> implements Data<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(ErrorResultModel errorResultModel)? error,
+    TResult? Function(T data)? data,
+    TResult? Function(ErrorResultModel errorResultModel)? error,
   }) {
     return data?.call(this.data);
   }
@@ -176,8 +177,8 @@ class _$Data<T> implements Data<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Data<T> value)? data,
-    TResult Function(Error<T> value)? error,
+    TResult? Function(Data<T> value)? data,
+    TResult? Function(Error<T> value)? error,
   }) {
     return data?.call(this);
   }
@@ -209,25 +210,24 @@ abstract class Data<T> implements ApiResultState<T> {
 abstract class _$$ErrorCopyWith<T, $Res> {
   factory _$$ErrorCopyWith(_$Error<T> value, $Res Function(_$Error<T>) then) =
       __$$ErrorCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({ErrorResultModel errorResultModel});
 }
 
 /// @nodoc
 class __$$ErrorCopyWithImpl<T, $Res>
-    extends _$ApiResultStateCopyWithImpl<T, $Res>
+    extends _$ApiResultStateCopyWithImpl<T, $Res, _$Error<T>>
     implements _$$ErrorCopyWith<T, $Res> {
   __$$ErrorCopyWithImpl(_$Error<T> _value, $Res Function(_$Error<T>) _then)
-      : super(_value, (v) => _then(v as _$Error<T>));
+      : super(_value, _then);
 
-  @override
-  _$Error<T> get _value => super._value as _$Error<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? errorResultModel = freezed,
+    Object? errorResultModel = null,
   }) {
     return _then(_$Error<T>(
-      errorResultModel: errorResultModel == freezed
+      errorResultModel: null == errorResultModel
           ? _value.errorResultModel
           : errorResultModel // ignore: cast_nullable_to_non_nullable
               as ErrorResultModel,
@@ -253,16 +253,16 @@ class _$Error<T> implements Error<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Error<T> &&
-            const DeepCollectionEquality()
-                .equals(other.errorResultModel, errorResultModel));
+            (identical(other.errorResultModel, errorResultModel) ||
+                other.errorResultModel == errorResultModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(errorResultModel));
+  int get hashCode => Object.hash(runtimeType, errorResultModel);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ErrorCopyWith<T, _$Error<T>> get copyWith =>
       __$$ErrorCopyWithImpl<T, _$Error<T>>(this, _$identity);
 
@@ -278,8 +278,8 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(ErrorResultModel errorResultModel)? error,
+    TResult? Function(T data)? data,
+    TResult? Function(ErrorResultModel errorResultModel)? error,
   }) {
     return error?.call(errorResultModel);
   }
@@ -309,8 +309,8 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Data<T> value)? data,
-    TResult Function(Error<T> value)? error,
+    TResult? Function(Data<T> value)? data,
+    TResult? Function(Error<T> value)? error,
   }) {
     return error?.call(this);
   }

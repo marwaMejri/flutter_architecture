@@ -1,3 +1,3 @@
 abstract class DataMapper<Type> {
-  Type mapToModel();
+  Type mapToEntity();
 }

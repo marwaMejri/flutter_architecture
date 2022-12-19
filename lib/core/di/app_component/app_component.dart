@@ -6,7 +6,5 @@ final GetIt locator = GetIt.I;
 
 @InjectableInit(
   preferRelativeImports: false,
-  asExtension: false,
 )
-@injectableInit
-Future<void> initAppComponentLocator() async => $initGetIt(locator);
+Future<void> initAppComponentLocator() async => locator.init();

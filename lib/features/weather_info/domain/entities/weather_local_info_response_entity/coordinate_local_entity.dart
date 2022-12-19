@@ -16,7 +16,7 @@ class CoordinateLocalEntity extends DataMapper<CoordinateEntity> {
   double? lat;
 
   @override
-  CoordinateEntity mapToModel() {
+  CoordinateEntity mapToEntity() {
     return CoordinateEntity(
       lat: lat,
       lon: lon,

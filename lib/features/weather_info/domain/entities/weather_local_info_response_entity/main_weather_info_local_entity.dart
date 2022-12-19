@@ -24,7 +24,7 @@ class MainWeatherInfoLocalEntity extends DataMapper<MainWeatherInfoEntity> {
   int? humidity;
 
   @override
-  MainWeatherInfoEntity mapToModel() {
+  MainWeatherInfoEntity mapToEntity() {
     return MainWeatherInfoEntity(
       tempMin: tempMin,
       tempMax: tempMax,

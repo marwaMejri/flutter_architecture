@@ -19,7 +19,7 @@ class WindInfoResponseModel extends DataMapper<WindInfoEntity> {
 
 
   @override
-  WindInfoEntity mapToModel() {
+  WindInfoEntity mapToEntity() {
     return WindInfoEntity(
       deg: deg ?? 0,
       speed: speed?.toWindSpeed() ?? '',

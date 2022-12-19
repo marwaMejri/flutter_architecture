@@ -24,7 +24,7 @@ class WeatherDescriptionResponseModel
 
 
   @override
-  WeatherDescriptionEntity mapToModel() {
+  WeatherDescriptionEntity mapToEntity() {
     return WeatherDescriptionEntity(
       id: id ?? 0,
       description: description ?? '',

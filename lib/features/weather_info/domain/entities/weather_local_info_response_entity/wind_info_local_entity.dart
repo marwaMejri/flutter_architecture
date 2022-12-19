@@ -15,7 +15,7 @@ class WindInfoLocalEntity extends DataMapper<WindInfoEntity> {
   int? deg;
 
   @override
-  WindInfoEntity mapToModel() {
+  WindInfoEntity mapToEntity() {
     return WindInfoEntity(
       deg: deg,
       speed: speed,

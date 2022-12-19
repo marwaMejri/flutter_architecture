@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/clouds_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/coordinate_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/main_weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/sunset_sunrise_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
@@ -9,9 +8,7 @@ import 'package:flutter_architecture/features/weather_info/domain/entities/weath
 
 class WeatherInfoEntity extends Equatable {
   const WeatherInfoEntity({
-    this.coord,
     this.weather,
-    this.base,
     this.main,
     this.visibility,
     this.wind,
@@ -21,13 +18,9 @@ class WeatherInfoEntity extends Equatable {
     this.timezone,
     this.id,
     this.name,
-    this.cod,
     this.weatherTheme,
   });
-
-  final CoordinateEntity? coord;
   final List<WeatherDescriptionEntity?>? weather;
-  final String? base;
   final MainWeatherInfoEntity? main;
   final String? visibility;
   final WindInfoEntity? wind;
@@ -37,14 +30,11 @@ class WeatherInfoEntity extends Equatable {
   final int? timezone;
   final int? id;
   final String? name;
-  final int? cod;
   final WeatherThemeEntity? weatherTheme;
 
   @override
   List<Object?> get props => <Object?>[
-        coord,
         weather,
-        base,
         main,
         visibility,
         wind,
@@ -54,7 +44,6 @@ class WeatherInfoEntity extends Equatable {
         timezone,
         id,
         name,
-        cod,
         weatherTheme,
       ];
 }

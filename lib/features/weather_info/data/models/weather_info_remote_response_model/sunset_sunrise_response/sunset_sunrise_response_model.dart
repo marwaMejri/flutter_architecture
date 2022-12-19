@@ -25,7 +25,7 @@ class SunsetSunriseResponseModel extends DataMapper<SunsetSunriseEntity> {
 
 
   @override
-  SunsetSunriseEntity mapToModel() {
+  SunsetSunriseEntity mapToEntity() {
     return SunsetSunriseEntity(
       sunrise: sunrise?.fromTimestampToTime(),
       type: type ?? 0,

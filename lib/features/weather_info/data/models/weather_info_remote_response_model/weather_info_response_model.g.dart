@@ -31,7 +31,6 @@ WeatherInfoResponseModel _$WeatherInfoResponseModelFromJson(
           : CloudsResponseModel.fromJson(
               json['clouds'] as Map<String, dynamic>),
       date: json['dt'] as int?,
-      base: json['base'] as String?,
       sunsetAndSunriseData: json['sys'] == null
           ? null
           : SunsetSunriseResponseModel.fromJson(
@@ -39,7 +38,6 @@ WeatherInfoResponseModel _$WeatherInfoResponseModelFromJson(
       timezone: json['timezone'] as int?,
       id: json['id'] as int?,
       cityName: json['name'] as String?,
-      cod: json['cod'] as int?,
     );
 
 Map<String, dynamic> _$WeatherInfoResponseModelToJson(
@@ -56,6 +54,4 @@ Map<String, dynamic> _$WeatherInfoResponseModelToJson(
       'timezone': instance.timezone,
       'id': instance.id,
       'name': instance.cityName,
-      'cod': instance.cod,
-      'base': instance.base,
     };

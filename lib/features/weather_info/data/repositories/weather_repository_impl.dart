@@ -32,7 +32,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
             _cacheLocalData(weatherInfoResponseModel);
           }
           return ApiResultModel<WeatherInfoEntity?>.success(
-            data: weatherInfoResponseModel?.mapToModel(),
+            data: weatherInfoResponseModel?.mapToEntity(),
           );
         },
         failure: (ErrorResultModel errorResultModel) {
@@ -71,7 +71,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
             _cacheLocalData(weatherInfoResponseModel);
           }
           return ApiResultModel<WeatherInfoEntity?>.success(
-            data: weatherInfoResponseModel?.mapToModel(),
+            data: weatherInfoResponseModel?.mapToEntity(),
           );
         },
         failure: (ErrorResultModel errorResultModel) {

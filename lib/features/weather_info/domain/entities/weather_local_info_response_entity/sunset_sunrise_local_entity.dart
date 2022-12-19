@@ -20,7 +20,7 @@ class SunsetSunriseLocalEntity extends DataMapper<SunsetSunriseEntity> {
   String? sunset;
 
   @override
-  SunsetSunriseEntity mapToModel() {
+  SunsetSunriseEntity mapToEntity() {
     return SunsetSunriseEntity(
       sunset: sunset,
       country: country,

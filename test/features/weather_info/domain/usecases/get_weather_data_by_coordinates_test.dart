@@ -1,6 +1,5 @@
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_model.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/clouds_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/coordinate_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/usecases/get_weather_data_by_coordinates.dart';
@@ -19,7 +18,6 @@ void main() {
   });
   group('test getWeatherDataByCoordinates() use case', () {
     const WeatherInfoEntity _mockedResult = WeatherInfoEntity(
-      coord: CoordinateEntity(lon: 10.637, lat: 35.8254),
       clouds: CloudsEntity(all: 0),
       weather: <WeatherDescriptionEntity>[
         WeatherDescriptionEntity(

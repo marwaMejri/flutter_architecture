@@ -13,7 +13,7 @@ class CloudsLocalEntity extends DataMapper<CloudsEntity> {
   int? id;
 
   @override
-  CloudsEntity mapToModel() {
+  CloudsEntity mapToEntity() {
     return CloudsEntity(
       all: all,
     );

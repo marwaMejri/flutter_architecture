@@ -2,7 +2,6 @@ import 'package:flutter_architecture/features/weather_info/data/datasources/loca
 import 'package:flutter_architecture/features/weather_info/data/datasources/local_datasource/weather_local_datasource.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_remote_response_model/weather_info_response_model.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_local_info_response_entity/clouds_local_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_local_info_response_entity/coordinate_local_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_local_info_response_entity/main_weather_info_local_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_local_info_response_entity/sunset_sunrise_local_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_local_info_response_entity/weather_description_local_entity.dart';
@@ -21,12 +20,11 @@ class WeatherRemoteDataSourceImpl implements WeatherLocalDataSource {
   @override
   void cacheWeatherInfo(WeatherInfoResponseModel? weatherInfoResponseModel) {
     final WeatherInfoEntity? weatherData =
-        weatherInfoResponseModel?.mapToModel();
+        weatherInfoResponseModel?.mapToEntity();
     final WeatherInfoLocalEntity _localEntity = WeatherInfoLocalEntity(
       timezone: weatherData?.timezone,
       name: weatherData?.name,
       dt: weatherData?.dt,
-      cod: weatherData?.cod,
       visibility: weatherData?.visibility,
     );
     _localEntity.sys.target = SunsetSunriseLocalEntity(
@@ -44,8 +42,6 @@ class WeatherRemoteDataSourceImpl implements WeatherLocalDataSource {
         ),
       ],
     );
-    _localEntity.coord.target = CoordinateLocalEntity(
-        lat: weatherData?.coord?.lat, lon: weatherData?.coord?.lon);
     _localEntity.main.target = MainWeatherInfoLocalEntity(
       tempMin: weatherData?.main?.tempMin,
       tempMax: weatherData?.main?.tempMax,
@@ -74,7 +70,7 @@ class WeatherRemoteDataSourceImpl implements WeatherLocalDataSource {
         await appLocalDatabase.getAll<WeatherInfoLocalEntity>();
     if ((weatherInfoLocalData?.length ?? 0) > 0) {
       final WeatherInfoEntity? _lastInfoData =
-          weatherInfoLocalData?.last.mapToModel();
+          weatherInfoLocalData?.last.mapToEntity();
       return _lastInfoData;
     }
     return null;
@@ -86,7 +82,7 @@ class WeatherRemoteDataSourceImpl implements WeatherLocalDataSource {
         await appLocalDatabase.getAll<WeatherInfoLocalEntity>();
     if ((weatherInfoLocalData?.length ?? 0) > 0) {
       final List<WeatherInfoEntity?>? _localData = weatherInfoLocalData
-          ?.map((WeatherInfoLocalEntity element) => element.mapToModel())
+          ?.map((WeatherInfoLocalEntity element) => element.mapToEntity())
           .toList();
       return _localData;
     }

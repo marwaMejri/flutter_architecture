@@ -19,7 +19,7 @@ class WeatherDescriptionLocalEntity
   String? icon;
 
   @override
-  WeatherDescriptionEntity mapToModel() {
+  WeatherDescriptionEntity mapToEntity() {
     return WeatherDescriptionEntity(
       id: id,
       main: main,

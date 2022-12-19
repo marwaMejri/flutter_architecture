@@ -18,7 +18,7 @@ class WeatherThemeLocalEntity extends DataMapper<WeatherThemeEntity> {
   int? id;
 
   @override
-  WeatherThemeEntity mapToModel() {
+  WeatherThemeEntity mapToEntity() {
     return WeatherThemeEntity(
       secondColor: Color(secondColorHex ?? 0),
       firstColor: Color(firstColorHex ?? 0),

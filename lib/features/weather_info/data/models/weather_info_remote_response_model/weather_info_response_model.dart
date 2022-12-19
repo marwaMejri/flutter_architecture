@@ -8,7 +8,6 @@ import 'package:flutter_architecture/features/weather_info/data/models/weather_i
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_remote_response_model/weather_description_response/weather_description_response_model.dart';
 import 'package:flutter_architecture/features/weather_info/data/models/weather_info_remote_response_model/wind_info_response/wind_info_response_model.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/clouds_entity.dart';
-import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/coordinate_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/main_weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/sunset_sunrise_entity.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_description_entity.dart';
@@ -29,12 +28,11 @@ class WeatherInfoResponseModel extends DataMapper<WeatherInfoEntity> {
       this.windData,
       this.cloudsData,
       this.date,
-      this.base,
       this.sunsetAndSunriseData,
       this.timezone,
       this.id,
       this.cityName,
-      this.cod});
+     });
   factory WeatherInfoResponseModel.fromJson(Map<String, dynamic> json) =>
       _$WeatherInfoResponseModelFromJson(json);
   @JsonKey(name: 'coord')
@@ -57,34 +55,29 @@ class WeatherInfoResponseModel extends DataMapper<WeatherInfoEntity> {
   int? id;
   @JsonKey(name: 'name')
   String? cityName;
-  int? cod;
-  String? base;
 
 
 
   @override
-  WeatherInfoEntity mapToModel() {
+  WeatherInfoEntity mapToEntity() {
     final List<WeatherDescriptionEntity>? _weatherDescription =
         weatherDescription
             ?.map((WeatherDescriptionResponseModel weatherDescriptionEntity) =>
-                weatherDescriptionEntity.mapToModel())
+                weatherDescriptionEntity.mapToEntity())
             .toList();
     final WeatherTypeEnum? weatherTypeEnum =
         _weatherDescription?[0].main?.toWeatherType();
     return WeatherInfoEntity(
-      main: mainWeatherData?.mapToModel() ?? const MainWeatherInfoEntity(),
+      main: mainWeatherData?.mapToEntity() ?? const MainWeatherInfoEntity(),
       id: id ?? 0,
       visibility: weatherVisibility?.toKM() ?? '',
-      clouds: cloudsData?.mapToModel() ?? const CloudsEntity(),
+      clouds: cloudsData?.mapToEntity() ?? const CloudsEntity(),
       weather: _weatherDescription,
-      coord: coordinateData?.mapToModel() ?? const CoordinateEntity(),
-      cod: cod ?? 0,
       dt: date?.fromTimestampToDate(),
       name: cityName ?? '',
-      base: base ?? '',
-      sys: sunsetAndSunriseData?.mapToModel() ?? SunsetSunriseEntity(),
+      sys: sunsetAndSunriseData?.mapToEntity() ?? const SunsetSunriseEntity(),
       timezone: timezone ?? 0,
-      wind: windData?.mapToModel() ?? WindInfoEntity(),
+      wind: windData?.mapToEntity() ?? const WindInfoEntity(),
       weatherTheme: weatherTypeEnum.toWeatherTheme(),
     );
   }

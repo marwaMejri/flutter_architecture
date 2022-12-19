@@ -16,7 +16,7 @@ class CloudsResponseModel extends DataMapper<CloudsEntity> {
   final int? all;
 
   @override
-  CloudsEntity mapToModel() {
+  CloudsEntity mapToEntity() {
     return CloudsEntity(
       all: all ?? 0,
     );

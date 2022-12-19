@@ -183,18 +183,6 @@ final _entities = <ModelEntity>[
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 1093966185179143489),
-            name: 'coordId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(1, 8226802502953832989),
-            relationTarget: 'CoordinateLocalEntity'),
-        ModelProperty(
-            id: const IdUid(2, 1991451046200193590),
-            name: 'base',
-            type: 9,
-            flags: 0),
-        ModelProperty(
             id: const IdUid(3, 6394657301755561811),
             name: 'mainId',
             type: 11,
@@ -248,11 +236,6 @@ final _entities = <ModelEntity>[
             type: 9,
             flags: 34848,
             indexId: const IdUid(9, 5388851329022072792)),
-        ModelProperty(
-            id: const IdUid(12, 7236989518563952867),
-            name: 'cod',
-            type: 6,
-            flags: 0),
         ModelProperty(
             id: const IdUid(13, 8985474808027619856),
             name: 'weatherThemeId',
@@ -343,8 +326,18 @@ ModelDefinition getObjectBoxModel() {
       lastRelationId: const IdUid(1, 4281757949125416941),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
-      retiredIndexUids: const [3578032260382545551, 234992684515061082],
-      retiredPropertyUids: const [8185252375108885606, 5586747036336351195],
+      retiredIndexUids: const [
+        3578032260382545551,
+        234992684515061082,
+        8226802502953832989
+      ],
+      retiredPropertyUids: const [
+        8185252375108885606,
+        5586747036336351195,
+        1093966185179143489,
+        1991451046200193590,
+        7236989518563952867
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -538,7 +531,6 @@ ModelDefinition getObjectBoxModel() {
     WeatherInfoLocalEntity: EntityDefinition<WeatherInfoLocalEntity>(
         model: _entities[5],
         toOneRelations: (WeatherInfoLocalEntity object) => [
-              object.coord,
               object.main,
               object.wind,
               object.clouds,
@@ -554,8 +546,6 @@ ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (WeatherInfoLocalEntity object, fb.Builder fbb) {
-          final baseOffset =
-              object.base == null ? null : fbb.writeString(object.base!);
           final visibilityOffset = object.visibility == null
               ? null
               : fbb.writeString(object.visibility!);
@@ -564,8 +554,6 @@ ModelDefinition getObjectBoxModel() {
           final nameOffset =
               object.name == null ? null : fbb.writeString(object.name!);
           fbb.startTable(14);
-          fbb.addInt64(0, object.coord.targetId);
-          fbb.addOffset(1, baseOffset);
           fbb.addInt64(2, object.main.targetId);
           fbb.addOffset(3, visibilityOffset);
           fbb.addInt64(4, object.wind.targetId);
@@ -575,7 +563,6 @@ ModelDefinition getObjectBoxModel() {
           fbb.addInt64(8, object.timezone);
           fbb.addInt64(9, object.id ?? 0);
           fbb.addOffset(10, nameOffset);
-          fbb.addInt64(11, object.cod);
           fbb.addInt64(12, object.weatherTheme.targetId);
           fbb.finish(fbb.endTable());
           return object.id ?? 0;
@@ -585,8 +572,6 @@ ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
 
           final object = WeatherInfoLocalEntity(
-              base: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 6),
               visibility: const fb.StringReader(asciiOptimization: true)
                   .vTableGetNullable(buffer, rootOffset, 10),
               dt: const fb.StringReader(asciiOptimization: true)
@@ -596,12 +581,7 @@ ModelDefinition getObjectBoxModel() {
               id: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 22),
               name: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 24),
-              cod: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 26));
-          object.coord.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          object.coord.attach(store);
+                  .vTableGetNullable(buffer, rootOffset, 24));
           object.main.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
           object.main.attach(store);
@@ -792,63 +772,50 @@ class WeatherDescriptionLocalEntity_ {
 
 /// [WeatherInfoLocalEntity] entity fields to define ObjectBox queries.
 class WeatherInfoLocalEntity_ {
-  /// see [WeatherInfoLocalEntity.coord]
-  static final coord =
-      QueryRelationToOne<WeatherInfoLocalEntity, CoordinateLocalEntity>(
-          _entities[5].properties[0]);
-
-  /// see [WeatherInfoLocalEntity.base]
-  static final base =
-      QueryStringProperty<WeatherInfoLocalEntity>(_entities[5].properties[1]);
-
   /// see [WeatherInfoLocalEntity.main]
   static final main =
       QueryRelationToOne<WeatherInfoLocalEntity, MainWeatherInfoLocalEntity>(
-          _entities[5].properties[2]);
+          _entities[5].properties[0]);
 
   /// see [WeatherInfoLocalEntity.visibility]
   static final visibility =
-      QueryStringProperty<WeatherInfoLocalEntity>(_entities[5].properties[3]);
+      QueryStringProperty<WeatherInfoLocalEntity>(_entities[5].properties[1]);
 
   /// see [WeatherInfoLocalEntity.wind]
   static final wind =
       QueryRelationToOne<WeatherInfoLocalEntity, WindInfoLocalEntity>(
-          _entities[5].properties[4]);
+          _entities[5].properties[2]);
 
   /// see [WeatherInfoLocalEntity.clouds]
   static final clouds =
       QueryRelationToOne<WeatherInfoLocalEntity, CloudsLocalEntity>(
-          _entities[5].properties[5]);
+          _entities[5].properties[3]);
 
   /// see [WeatherInfoLocalEntity.dt]
   static final dt =
-      QueryStringProperty<WeatherInfoLocalEntity>(_entities[5].properties[6]);
+      QueryStringProperty<WeatherInfoLocalEntity>(_entities[5].properties[4]);
 
   /// see [WeatherInfoLocalEntity.sys]
   static final sys =
       QueryRelationToOne<WeatherInfoLocalEntity, SunsetSunriseLocalEntity>(
-          _entities[5].properties[7]);
+          _entities[5].properties[5]);
 
   /// see [WeatherInfoLocalEntity.timezone]
   static final timezone =
-      QueryIntegerProperty<WeatherInfoLocalEntity>(_entities[5].properties[8]);
+      QueryIntegerProperty<WeatherInfoLocalEntity>(_entities[5].properties[6]);
 
   /// see [WeatherInfoLocalEntity.id]
   static final id =
-      QueryIntegerProperty<WeatherInfoLocalEntity>(_entities[5].properties[9]);
+      QueryIntegerProperty<WeatherInfoLocalEntity>(_entities[5].properties[7]);
 
   /// see [WeatherInfoLocalEntity.name]
   static final name =
-      QueryStringProperty<WeatherInfoLocalEntity>(_entities[5].properties[10]);
-
-  /// see [WeatherInfoLocalEntity.cod]
-  static final cod =
-      QueryIntegerProperty<WeatherInfoLocalEntity>(_entities[5].properties[11]);
+      QueryStringProperty<WeatherInfoLocalEntity>(_entities[5].properties[8]);
 
   /// see [WeatherInfoLocalEntity.weatherTheme]
   static final weatherTheme =
       QueryRelationToOne<WeatherInfoLocalEntity, WeatherThemeLocalEntity>(
-          _entities[5].properties[12]);
+          _entities[5].properties[9]);
 
   /// see [WeatherInfoLocalEntity.weather]
   static final weather = QueryRelationToMany<WeatherInfoLocalEntity,

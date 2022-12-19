@@ -18,7 +18,7 @@ class CoordinateResponseModel extends DataMapper<CoordinateEntity> {
   final double? lat;
 
   @override
-  CoordinateEntity mapToModel() {
+  CoordinateEntity mapToEntity() {
     return CoordinateEntity(
       lat: lat ?? 0.0,
       lon: lon ?? 0.0,
