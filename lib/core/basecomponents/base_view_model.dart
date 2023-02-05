@@ -27,7 +27,7 @@ class BaseViewModel extends ChangeNotifier {
   Future<ApiResultState<Type>?> executeParamsUseCase<Type, Params>(
       {required BaseParamsUseCase<Type, Params> useCase, Params? query}) async {
     showLoadingIndicator(true);
-    final ApiResultModel<Type> _apiResult = await useCase.call(query);
+    final ApiResultModel<Type> _apiResult = await useCase(query);
     return _apiResult.when(
       success: (Type data) {
         showLoadingIndicator(false);

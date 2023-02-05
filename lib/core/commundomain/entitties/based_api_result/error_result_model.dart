@@ -9,10 +9,6 @@ class ErrorResultModel extends Equatable {
   final int? statusCode;
   final String? message;
 
-  String? getErrorDescription() {
-    return message;
-  }
-
   @override
   List<Object?> get props => <Object?>[
         statusCode,
