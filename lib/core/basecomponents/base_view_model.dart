@@ -11,19 +11,6 @@ class BaseViewModel extends ChangeNotifier {
 
   StreamController<bool> get toggleLoading => _toggleLoading;
 
-  void showLoadingIndicator(bool show) {
-    _toggleLoading.add(show);
-  }
-
-  void onDispose() {}
-
-  @override
-  void dispose() {
-    _toggleLoading.close();
-    onDispose();
-    super.dispose();
-  }
-
   Future<ApiResultState<Type>?> executeParamsUseCase<Type, Params>(
       {required BaseParamsUseCase<Type, Params> useCase, Params? query}) async {
     showLoadingIndicator(true);
@@ -44,4 +31,19 @@ class BaseViewModel extends ChangeNotifier {
       },
     );
   }
+
+  void showLoadingIndicator(bool show) {
+    _toggleLoading.add(show);
+  }
+
+  void onDispose() {}
+
+  @override
+  void dispose() {
+    _toggleLoading.close();
+    onDispose();
+    super.dispose();
+  }
+
+
 }

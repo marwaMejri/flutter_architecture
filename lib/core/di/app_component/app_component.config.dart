@@ -11,7 +11,7 @@ import 'package:flutter_architecture/core/utils/helpers/api_call_helper/api_call
     as _i8;
 import 'package:flutter_architecture/core/utils/helpers/connectivity_helper/connectivity_checker_helper.dart'
     as _i4;
-import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_ui_helper.dart'
+import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart'
     as _i5;
 import 'package:flutter_architecture/features/weather_info/data/datasources/local_datasource/local_database.dart'
     as _i3;

@@ -5,7 +5,7 @@ import 'package:flutter_architecture/core/basecomponents/base_view_model.dart';
 import 'package:flutter_architecture/core/utils/constants/app_constants.dart';
 import 'package:flutter_architecture/core/utils/helpers/connectivity_helper/connectivity_checker_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
-import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_ui_helper.dart';
+import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
 import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:provider/provider.dart';
 

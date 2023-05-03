@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/basecomponents/base_responsive_widget.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
-import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_ui_helper.dart';
+import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
 import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/core/utils/values/styles.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
