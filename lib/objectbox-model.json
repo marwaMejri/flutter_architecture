@@ -1,0 +1,308 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:6880007904931586657",
+      "lastPropertyId": "2:412756344256516116",
+      "name": "CloudsLocalEntity",
+      "properties": [
+        {
+          "id": "1:2949878487885422668",
+          "name": "all",
+          "type": 6
+        },
+        {
+          "id": "2:412756344256516116",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3461254210854617767",
+      "lastPropertyId": "3:5087402477027980399",
+      "name": "CoordinateLocalEntity",
+      "properties": [
+        {
+          "id": "1:4300623707401903235",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5079107962356621047",
+          "name": "lon",
+          "type": 8
+        },
+        {
+          "id": "3:5087402477027980399",
+          "name": "lat",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:9192336508330026828",
+      "lastPropertyId": "7:9165181845112548066",
+      "name": "MainWeatherInfoLocalEntity",
+      "properties": [
+        {
+          "id": "1:4298114905731753084",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5026349606310493349",
+          "name": "temp",
+          "type": 9
+        },
+        {
+          "id": "3:5240301424725549896",
+          "name": "feelsLike",
+          "type": 8
+        },
+        {
+          "id": "4:4305099678241748933",
+          "name": "tempMin",
+          "type": 8
+        },
+        {
+          "id": "5:5862299152361159873",
+          "name": "tempMax",
+          "type": 8
+        },
+        {
+          "id": "6:293333133141988668",
+          "name": "pressure",
+          "type": 6
+        },
+        {
+          "id": "7:9165181845112548066",
+          "name": "humidity",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:6241373764159141860",
+      "lastPropertyId": "5:6291010900849653715",
+      "name": "SunsetSunriseLocalEntity",
+      "properties": [
+        {
+          "id": "1:7852074505021439852",
+          "name": "type",
+          "type": 6
+        },
+        {
+          "id": "2:3386216093346565803",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "3:9057616120145976128",
+          "name": "country",
+          "type": 9
+        },
+        {
+          "id": "4:4980521017912740391",
+          "name": "sunrise",
+          "type": 9
+        },
+        {
+          "id": "5:6291010900849653715",
+          "name": "sunset",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:2646356980437107104",
+      "lastPropertyId": "4:3920029365622128158",
+      "name": "WeatherDescriptionLocalEntity",
+      "properties": [
+        {
+          "id": "1:7958998890392977809",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:185151375142886630",
+          "name": "main",
+          "type": 9
+        },
+        {
+          "id": "3:2110290469239205967",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "4:3920029365622128158",
+          "name": "icon",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:1808611098615804373",
+      "lastPropertyId": "13:8985474808027619856",
+      "name": "WeatherInfoLocalEntity",
+      "properties": [
+        {
+          "id": "3:6394657301755561811",
+          "name": "mainId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:8514966264585192641",
+          "relationTarget": "MainWeatherInfoLocalEntity"
+        },
+        {
+          "id": "4:5042431272608119124",
+          "name": "visibility",
+          "type": 9
+        },
+        {
+          "id": "5:1778835125343500197",
+          "name": "windId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:2884523745363737944",
+          "relationTarget": "WindInfoLocalEntity"
+        },
+        {
+          "id": "6:3533506375304101950",
+          "name": "cloudsId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "4:6619021802334768840",
+          "relationTarget": "CloudsLocalEntity"
+        },
+        {
+          "id": "7:1373125539525332389",
+          "name": "dt",
+          "type": 9
+        },
+        {
+          "id": "8:7779962110016077875",
+          "name": "sysId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "5:484075559269616283",
+          "relationTarget": "SunsetSunriseLocalEntity"
+        },
+        {
+          "id": "9:8208836753316543947",
+          "name": "timezone",
+          "type": 6
+        },
+        {
+          "id": "10:8008230289145083908",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "11:2510677696552961634",
+          "name": "name",
+          "type": 9,
+          "flags": 34848,
+          "indexId": "9:5388851329022072792"
+        },
+        {
+          "id": "13:8985474808027619856",
+          "name": "weatherThemeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "6:3328818796529849563",
+          "relationTarget": "WeatherThemeLocalEntity"
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:4281757949125416941",
+          "name": "weather",
+          "targetId": "5:2646356980437107104"
+        }
+      ]
+    },
+    {
+      "id": "7:3962831592385967162",
+      "lastPropertyId": "3:282724855969962684",
+      "name": "WindInfoLocalEntity",
+      "properties": [
+        {
+          "id": "1:6938484251426828505",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5481480834145518703",
+          "name": "speed",
+          "type": 9
+        },
+        {
+          "id": "3:282724855969962684",
+          "name": "deg",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "8:8827388458182144762",
+      "lastPropertyId": "5:8312217297488952861",
+      "name": "WeatherThemeLocalEntity",
+      "properties": [
+        {
+          "id": "1:2352114334661212234",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "4:8325933891333312625",
+          "name": "firstColorHex",
+          "type": 6
+        },
+        {
+          "id": "5:8312217297488952861",
+          "name": "secondColorHex",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "8:8827388458182144762",
+  "lastIndexId": "9:5388851329022072792",
+  "lastRelationId": "1:4281757949125416941",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [
+    3578032260382545551,
+    234992684515061082,
+    8226802502953832989
+  ],
+  "retiredPropertyUids": [
+    8185252375108885606,
+    5586747036336351195,
+    1093966185179143489,
+    1991451046200193590,
+    7236989518563952867
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
