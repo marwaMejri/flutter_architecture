@@ -60,6 +60,35 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    def appName = "My App"
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            applicationId "com.example.flutter_architecture"
+            dimension "default"
+            resValue "string", "app_name", "\"$appName (DEV)\""
+        }
+        qa {
+            applicationId "com.example.flutter_architecture"
+            dimension "default"
+            resValue "string", "app_name", "\"$appName (QA)\""
+        }
+        sit {
+            applicationId "com.example.flutter_architecture"
+            dimension "default"
+            resValue "string", "app_name", "\"$appName (SIT)\""
+        }
+        uat {
+            applicationId "com.example.flutter_architecture"
+            dimension "default"
+            resValue "string", "app_name", "\"$appName (UAT)\""
+        }
+        prod {
+            applicationId "com.example.flutter_architecture.prod"
+            dimension "default"
+            resValue "string", "app_name", "\"$appName\""
+        }
+    }
 }
 
 flutter {

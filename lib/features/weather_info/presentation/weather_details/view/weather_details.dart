@@ -17,6 +17,7 @@ import 'package:flutter_architecture/features/weather_info/presentation/weather_
 import 'package:flutter_architecture/features/weather_info/utils/requests_models/weather_by_coordinates_request_model.dart';
 import 'package:lottie/lottie.dart';
 
+@RoutePage()
 class WeatherDetailsView extends StatefulWidget {
   const WeatherDetailsView({
     Key? key,
@@ -70,8 +71,7 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final StackRouter appRouter = AutoRouter.of(context);
+  Widget build(BuildContext buildContext) {
     return Scaffold(
       backgroundColor: lightColor,
       body: SafeArea(
@@ -190,8 +190,8 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
                         bottom: 0,
                         child: BottomNavigationBarWidget(
                           navigateToAddScreen: () {
-                            appRouter.push(
-                              const AddNewCityViewRoute(),
+                            context.pushRoute(
+                              const AddNewCityView(),
                             );
                           },
                         ),

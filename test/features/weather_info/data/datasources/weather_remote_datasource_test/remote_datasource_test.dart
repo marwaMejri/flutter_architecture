@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_model.dart';
 import 'package:flutter_architecture/core/utils/constants/app_constants.dart';
+import 'package:flutter_architecture/core/utils/helpers/http_strategy_helper/concrete_strategies/get_request_strategy.dart';
 import 'package:flutter_architecture/features/weather_info/data/datasources/remote_datasource/weather_remote_datasource_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -23,8 +24,11 @@ void main() {
       appIdKey: appIdValue
     };
     void _arrangeResponse() {
-      when(_apiCallHelper.getWS(uri: getWeatherDetails, params: _params))
-          .thenAnswer((_) async {
+      when(_apiCallHelper.makeRequest(
+        uri: getWeatherDetails,
+        requestData: _params,
+        httpRequestStrategy: GetRequestStrategy(),
+      )).thenAnswer((_) async {
         final http.Response _response = http.Response(
           File('test_assets/weather_info_json_data.json').readAsStringSync(),
           200,
@@ -41,7 +45,11 @@ void main() {
         //act
         _sut.getWeatherDataByCity(cityName: _cityName);
         //assert
-        verify(_apiCallHelper.getWS(uri: getWeatherDetails, params: _params));
+        verify(_apiCallHelper.makeRequest(
+          uri: getWeatherDetails,
+          requestData: _params,
+          httpRequestStrategy: GetRequestStrategy(),
+        ));
       },
     );
   });

@@ -301,7 +301,13 @@ final _entities = <ModelEntity>[
       backlinks: <ModelBacklink>[])
 ];
 
-/// Open an ObjectBox store with the model declared in this file.
+/// Shortcut for [Store.new] that passes [getObjectBoxModel] and for Flutter
+/// apps by default a [directory] using `defaultStoreDirectory()` from the
+/// ObjectBox Flutter library.
+///
+/// Note: for desktop apps it is recommended to specify a unique [directory].
+///
+/// See [Store.new] for an explanation of all parameters.
 Future<Store> openStore(
         {String? directory,
         int? maxDBSizeInKB,
@@ -317,7 +323,8 @@ Future<Store> openStore(
         queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
         macosApplicationGroup: macosApplicationGroup);
 
-/// ObjectBox model definition, pass it to [Store] - Store(getObjectBoxModel())
+/// Returns the ObjectBox model definition for this project for use with
+/// [Store.new].
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
@@ -362,12 +369,11 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
-          final object = CloudsLocalEntity(
-              all: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 6));
+          final allParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
+          final idParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 6);
+          final object = CloudsLocalEntity(all: allParam, id: idParam);
 
           return object;
         }),
@@ -390,14 +396,14 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
-          final object = CoordinateLocalEntity(
-              lon: const fb.Float64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              lat: const fb.Float64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 8),
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4));
+          final lonParam =
+              const fb.Float64Reader().vTableGetNullable(buffer, rootOffset, 6);
+          final latParam =
+              const fb.Float64Reader().vTableGetNullable(buffer, rootOffset, 8);
+          final idParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
+          final object =
+              CoordinateLocalEntity(lon: lonParam, lat: latParam, id: idParam);
 
           return object;
         }),
@@ -426,22 +432,28 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
+          final tempParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 6);
+          final feelsLikeParam =
+              const fb.Float64Reader().vTableGetNullable(buffer, rootOffset, 8);
+          final tempMinParam = const fb.Float64Reader()
+              .vTableGetNullable(buffer, rootOffset, 10);
+          final tempMaxParam = const fb.Float64Reader()
+              .vTableGetNullable(buffer, rootOffset, 12);
+          final pressureParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 14);
+          final humidityParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 16);
+          final idParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
           final object = MainWeatherInfoLocalEntity(
-              temp: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              feelsLike: const fb.Float64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 8),
-              tempMin: const fb.Float64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 10),
-              tempMax: const fb.Float64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 12),
-              pressure: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 14),
-              humidity: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 16),
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4));
+              temp: tempParam,
+              feelsLike: feelsLikeParam,
+              tempMin: tempMinParam,
+              tempMax: tempMaxParam,
+              pressure: pressureParam,
+              humidity: humidityParam,
+              id: idParam);
 
           return object;
         }),
@@ -472,18 +484,22 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
+          final typeParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
+          final idParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 6);
+          final countryParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 8);
+          final sunriseParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 10);
+          final sunsetParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 12);
           final object = SunsetSunriseLocalEntity(
-              type: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4),
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              country: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 8),
-              sunrise: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 10),
-              sunset: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 12));
+              type: typeParam,
+              id: idParam,
+              country: countryParam,
+              sunrise: sunriseParam,
+              sunset: sunsetParam);
 
           return object;
         }),
@@ -515,16 +531,20 @@ ModelDefinition getObjectBoxModel() {
             objectFromFB: (Store store, ByteData fbData) {
               final buffer = fb.BufferContext(fbData);
               final rootOffset = buffer.derefObject(0);
-
+              final idParam = const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 4);
+              final mainParam = const fb.StringReader(asciiOptimization: true)
+                  .vTableGetNullable(buffer, rootOffset, 6);
+              final descriptionParam =
+                  const fb.StringReader(asciiOptimization: true)
+                      .vTableGetNullable(buffer, rootOffset, 8);
+              final iconParam = const fb.StringReader(asciiOptimization: true)
+                  .vTableGetNullable(buffer, rootOffset, 10);
               final object = WeatherDescriptionLocalEntity(
-                  id: const fb.Int64Reader()
-                      .vTableGetNullable(buffer, rootOffset, 4),
-                  main: const fb.StringReader(asciiOptimization: true)
-                      .vTableGetNullable(buffer, rootOffset, 6),
-                  description: const fb.StringReader(asciiOptimization: true)
-                      .vTableGetNullable(buffer, rootOffset, 8),
-                  icon: const fb.StringReader(asciiOptimization: true)
-                      .vTableGetNullable(buffer, rootOffset, 10));
+                  id: idParam,
+                  main: mainParam,
+                  description: descriptionParam,
+                  icon: iconParam);
 
               return object;
             }),
@@ -570,18 +590,22 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
+          final visibilityParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 10);
+          final dtParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 16);
+          final timezoneParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 20);
+          final idParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 22);
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 24);
           final object = WeatherInfoLocalEntity(
-              visibility: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 10),
-              dt: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 16),
-              timezone: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 20),
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 22),
-              name: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 24));
+              visibility: visibilityParam,
+              dt: dtParam,
+              timezone: timezoneParam,
+              id: idParam,
+              name: nameParam);
           object.main.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
           object.main.attach(store);
@@ -624,14 +648,14 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
+          final speedParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 6);
+          final degParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 8);
+          final idParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
           final object = WindInfoLocalEntity(
-              speed: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              deg: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 8),
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4));
+              speed: speedParam, deg: degParam, id: idParam);
 
           return object;
         }),
@@ -654,14 +678,16 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
+          final firstColorHexParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 10);
+          final secondColorHexParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 12);
+          final idParam =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
           final object = WeatherThemeLocalEntity(
-              firstColorHex: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 10),
-              secondColorHex: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 12),
-              id: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 4));
+              firstColorHex: firstColorHexParam,
+              secondColorHex: secondColorHexParam,
+              id: idParam);
 
           return object;
         })

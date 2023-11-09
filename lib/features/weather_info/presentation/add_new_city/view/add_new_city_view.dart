@@ -12,6 +12,7 @@ import 'package:flutter_architecture/features/weather_info/presentation/add_new_
 import 'package:flutter_architecture/features/weather_info/presentation/add_new_city/widgets/add_new_city_header/add_new_city_header_widget.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/add_new_city/widgets/searsh_city/search_city_widget.dart';
 
+@RoutePage()
 class AddNewCityView extends StatefulWidget {
   const AddNewCityView({
     Key? key,
@@ -50,7 +51,8 @@ class _AddNewCityViewState extends State<AddNewCityView> {
         .listen((ApiResultState<WeatherInfoEntity?>? result) {
       result?.when(
         data: (WeatherInfoEntity? data) {
-          if (!_citiesWeatherList.any((WeatherInfoEntity? element) => element?.id == data?.id)) {
+          if (!_citiesWeatherList
+              .any((WeatherInfoEntity? element) => element?.id == data?.id)) {
             setState(() {
               _citiesWeatherList.add(data);
             });
@@ -108,10 +110,9 @@ class _AddNewCityViewState extends State<AddNewCityView> {
                           ? AddNewCityBoxDetailsWidget(
                               onClickBox:
                                   (WeatherInfoEntity? weatherInfoEntity) {
-                                _appRouter.push(
-                                  WeatherDetailsViewRoute(
-                                    weatherInfoEntity: weatherInfoEntity,
-                                  ),
+                                context.pushRoute(
+                                  WeatherDetailsView(
+                                      weatherInfoEntity: weatherInfoEntity),
                                 );
                               },
                               weatherInfoEntity: _citiesWeatherList[index - 1],

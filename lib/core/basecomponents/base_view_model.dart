@@ -7,13 +7,17 @@ import 'package:flutter_architecture/core/commundomain/entitties/based_api_resul
 import 'package:flutter_architecture/core/commundomain/usecases/base_params_usecase.dart';
 
 class BaseViewModel extends ChangeNotifier {
-  final StreamController<bool> _toggleLoading = StreamController<bool>.broadcast();
+  final StreamController<bool> _toggleLoading =
+      StreamController<bool>.broadcast();
 
   StreamController<bool> get toggleLoading => _toggleLoading;
 
-  Future<ApiResultState<Type>?> executeParamsUseCase<Type, Params>(
-      {required BaseParamsUseCase<Type, Params> useCase, Params? query}) async {
-    showLoadingIndicator(true);
+  Future<ApiResultState<Type>?> executeParamsUseCase<Type, Params>({
+    required BaseParamsUseCase<Type, Params> useCase,
+    Params? query,
+    bool launchLoader = true,
+  }) async {
+    showLoadingIndicator(launchLoader);
     final ApiResultModel<Type> _apiResult = await useCase(query);
     return _apiResult.when(
       success: (Type data) {
@@ -44,6 +48,4 @@ class BaseViewModel extends ChangeNotifier {
     onDispose();
     super.dispose();
   }
-
-
 }
