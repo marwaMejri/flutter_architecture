@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/basecomponents/base_responsive_widget.dart';
 import 'package:flutter_architecture/core/basecomponents/base_view_model.dart';
 import 'package:flutter_architecture/core/utils/constants/app_constants.dart';
+import 'package:flutter_architecture/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/connectivity_helper/connectivity_checker_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
-import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:provider/provider.dart';
 
 class BaseViewModelView<T> extends StatefulWidget {
@@ -75,7 +75,8 @@ class _BaseViewModelViewState<T> extends State<BaseViewModelView<T>> {
             if (_showLoader)
               BaseResponsiveWidget(
                 buildWidget: (BuildContext context,
-                    ResponsiveUiConfig responsiveUiConfig) {
+                    ResponsiveUiConfig responsiveUiConfig,
+                    AppConfigurations appConfigurations) {
                   return AnimatedOpacity(
                     opacity: 1,
                     duration: const Duration(milliseconds: 200),
@@ -87,7 +88,7 @@ class _BaseViewModelViewState<T> extends State<BaseViewModelView<T>> {
                         child: Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: primaryColor,
+                            color: appConfigurations.appTheme.primaryColor,
                           ),
                           padding: EdgeInsets.all(
                             15.w,
@@ -95,7 +96,8 @@ class _BaseViewModelViewState<T> extends State<BaseViewModelView<T>> {
                           width: 70.w,
                           height: 70.w,
                           child: CircularProgressIndicator(
-                            color: lightColor,
+                            color:
+                                appConfigurations.appTheme.backgroundLightColor,
                           ),
                         ),
                       ),

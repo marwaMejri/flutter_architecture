@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/basecomponents/base_responsive_widget.dart';
+import 'package:flutter_architecture/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
-import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/core/utils/values/styles.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 
@@ -18,8 +18,8 @@ class AddNewCityBoxDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseResponsiveWidget(
-      buildWidget:
-          (BuildContext context, ResponsiveUiConfig responsiveUiConfig) {
+      buildWidget: (BuildContext context, ResponsiveUiConfig responsiveUiConfig,
+          AppConfigurations appConfigurations) {
         return GestureDetector(
           onTap: () {
             if (onClickBox != null) {
@@ -38,8 +38,10 @@ class AddNewCityBoxDetailsWidget extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: <Color>[
-                  weatherInfoEntity?.weatherTheme?.secondColor ?? lightBlue,
-                  weatherInfoEntity?.weatherTheme?.firstColor ?? blue,
+                  weatherInfoEntity?.weatherTheme?.secondColor ??
+                      appConfigurations.appTheme.thirdColor,
+                  weatherInfoEntity?.weatherTheme?.firstColor ??
+                      appConfigurations.appTheme.secondaryColor,
                 ],
               ),
               borderRadius: BorderRadius.all(
@@ -58,7 +60,7 @@ class AddNewCityBoxDetailsWidget extends StatelessWidget {
                   child: Text(
                     weatherInfoEntity?.name ?? '',
                     style: poppinsBold.copyWith(
-                      color: primaryColor,
+                      color: appConfigurations.appTheme.primaryColor,
                       fontSize: 20.w,
                     ),
                   ),
@@ -73,7 +75,7 @@ class AddNewCityBoxDetailsWidget extends StatelessWidget {
                         weatherInfoEntity?.main?.temp ?? '',
                         style: poppinsRegular.copyWith(
                           fontSize: 16.w,
-                          color: primaryColor,
+                          color: appConfigurations.appTheme.primaryColor,
                         ),
                       ),
                       Text(
@@ -81,7 +83,7 @@ class AddNewCityBoxDetailsWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: poppinsRegular.copyWith(
                           fontSize: 16.w,
-                          color: primaryColor,
+                          color: appConfigurations.appTheme.primaryColor,
                         ),
                       ),
                     ],

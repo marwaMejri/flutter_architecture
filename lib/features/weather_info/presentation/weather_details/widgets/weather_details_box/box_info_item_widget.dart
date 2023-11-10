@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/core/basecomponents/base_responsive_widget.dart';
+import 'package:flutter_architecture/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
+import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
 import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/core/utils/values/styles.dart';
 
@@ -14,23 +17,27 @@ class BoxInfoItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        text: '$boxInfoKey: ',
-        style: poppinsRegular.copyWith(
-          color: lightColor,
-          fontSize: 15.w,
-        ),
-        children: <TextSpan>[
-          TextSpan(
-            text: boxInfoValue ?? '',
-            style: poppinsBold.copyWith(
-              color: lightColor,
-              fontSize: 13.w,
-            ),
+    return BaseResponsiveWidget(
+      buildWidget: (BuildContext context, ResponsiveUiConfig responsiveUiConfig,
+              AppConfigurations appConfigurations) =>
+          RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          text: '$boxInfoKey: ',
+          style: poppinsRegular.copyWith(
+            color: appConfigurations.appTheme.backgroundLightColor,
+            fontSize: 15.w,
           ),
-        ],
+          children: <TextSpan>[
+            TextSpan(
+              text: boxInfoValue ?? '',
+              style: poppinsBold.copyWith(
+                color: appConfigurations.appTheme.backgroundLightColor,
+                fontSize: 13.w,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

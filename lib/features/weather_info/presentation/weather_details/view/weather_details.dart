@@ -5,9 +5,9 @@ import 'package:flutter_architecture/core/basecomponents/base_view_model_view.da
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/api_result_state.dart';
 import 'package:flutter_architecture/core/commundomain/entitties/based_api_result/error_result_model.dart';
 import 'package:flutter_architecture/core/utils/auto_router_setup/auto_router.gr.dart';
+import 'package:flutter_architecture/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
-import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/weather_details_viewmodel.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/bottom_navigation_bar/bottom_navigation_bar_widget.dart';
@@ -73,7 +73,6 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
   @override
   Widget build(BuildContext buildContext) {
     return Scaffold(
-      backgroundColor: lightColor,
       body: SafeArea(
         child: BaseViewModelView<WeatherDetailsViewModel>(
           onInitState: (WeatherDetailsViewModel provider) async {
@@ -103,10 +102,12 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
             return BaseResponsiveWidget(
               initializeConfig: true,
               buildWidget: (BuildContext context,
-                  ResponsiveUiConfig responsiveUiConfig) {
+                  ResponsiveUiConfig responsiveUiConfig,
+                  AppConfigurations appConfigurations) {
                 return RefreshIndicator(
-                  backgroundColor: lightColor,
-                  color: primaryColor,
+                  backgroundColor:
+                      appConfigurations.appTheme.backgroundLightColor,
+                  color: appConfigurations.appTheme.primaryColor,
                   triggerMode: RefreshIndicatorTriggerMode.anywhere,
                   strokeWidth: 2.w,
                   onRefresh: () async {
@@ -123,8 +124,10 @@ class _WeatherDetailsViewState extends State<WeatherDetailsView> {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: <Color>[
-                                _result?.weatherTheme?.secondColor ?? lightBlue,
-                                _result?.weatherTheme?.firstColor ?? blue,
+                                _result?.weatherTheme?.secondColor ??
+                                    appConfigurations.appTheme.secondaryColor,
+                                _result?.weatherTheme?.firstColor ??
+                                    appConfigurations.appTheme.thirdColor,
                               ],
                             ),
                           ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/basecomponents/base_responsive_widget.dart';
+import 'package:flutter_architecture/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
 import 'package:flutter_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
-import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/core/utils/values/styles.dart';
 
 class SearchCityWidget extends StatelessWidget {
@@ -17,8 +17,8 @@ class SearchCityWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseResponsiveWidget(
-      buildWidget:
-          (BuildContext context, ResponsiveUiConfig responsiveUiConfig) {
+      buildWidget: (BuildContext context, ResponsiveUiConfig responsiveUiConfig,
+          AppConfigurations appConfigurations) {
         return Material(
           color: Colors.transparent,
           child: Center(
@@ -31,7 +31,7 @@ class SearchCityWidget extends StatelessWidget {
                 vertical: 20.h,
               ),
               decoration: BoxDecoration(
-                color: lightColor,
+                color: appConfigurations.appTheme.thirdColor,
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     20.w,
@@ -46,7 +46,7 @@ class SearchCityWidget extends StatelessWidget {
                   Text(
                     'Add City',
                     style: poppinsBold.copyWith(
-                      color: primaryColor,
+                      color: appConfigurations.appTheme.primaryColor,
                       fontSize: 20.w,
                     ),
                   ),
@@ -65,7 +65,7 @@ class SearchCityWidget extends StatelessWidget {
                       hintText: 'Enter a place name',
                       prefixIcon: Icon(
                         Icons.search,
-                        color: grey,
+                        color: appConfigurations.appTheme.backgroundGreyColor,
                         size: 25.w,
                       ),
                     ),
@@ -84,11 +84,11 @@ class SearchCityWidget extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: blue,
+                        color: appConfigurations.appTheme.primaryColor,
                       ),
                       child: Icon(
                         Icons.check,
-                        color: lightColor,
+                        color: appConfigurations.appTheme.secondaryColor,
                         size: 50.w,
                       ),
                     ),

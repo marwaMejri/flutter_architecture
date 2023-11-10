@@ -59,7 +59,7 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     final appModule = _$AppModule();
-    gh.singleton<_i3.AppConfigurationsHelper>(_i3.AppConfigurationsHelper());
+    gh.singleton<_i3.AppConfigurations>(_i3.AppConfigurations());
     gh.singleton<_i4.AppFlavorsHelper>(_i4.AppFlavorsHelper());
     await gh.factoryAsync<_i5.AppLocalDatabase>(
       () => appModule.prefs,

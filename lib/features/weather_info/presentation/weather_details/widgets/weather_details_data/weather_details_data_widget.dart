@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/core/di/app_component/app_component.dart';
+import 'package:flutter_architecture/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
-import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/core/utils/values/styles.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/main_weather_info_entity.dart';
 import 'package:flutter_architecture/features/weather_info/presentation/weather_details/widgets/weather_details_data/weather_single_info_widget.dart';
-
 
 class WeatherDetailsDataWidget extends StatelessWidget {
   const WeatherDetailsDataWidget({
@@ -19,6 +19,7 @@ class WeatherDetailsDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppConfigurations appConfigurations = locator<AppConfigurations>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -26,14 +27,14 @@ class WeatherDetailsDataWidget extends StatelessWidget {
         Text(
           weatherDescription ?? '',
           style: poppinsBoldItalic.copyWith(
-            color: primaryColor,
+            color: appConfigurations.appTheme.primaryColor,
             fontSize: 16.w,
           ),
         ),
         Text(
           mainWeatherInfoEntity?.temp ?? '',
           style: poppinsBoldItalic.copyWith(
-            color: primaryColor,
+            color: appConfigurations.appTheme.primaryColor,
             fontSize: 50.w,
           ),
         ),

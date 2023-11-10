@@ -2,38 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/utils/values/colors.dart';
 
 TextStyle poppinsBold = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsBold',
 );
 TextStyle poppinsBoldItalic = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsBoldItalic',
 );
 TextStyle poppinsExtraBold = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsExtraBold',
 );
 TextStyle poppinsExtraBoldItalic = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsExtraBoldItalic',
 );
 TextStyle poppinsMedium = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsMedium',
 );
 TextStyle poppinsMediumItalic = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsMediumItalic',
 );
 TextStyle poppinsRegular = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsRegular',
 );
 TextStyle poppinsSemiBold = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsSemiBold',
 );
 TextStyle poppinsSemiBoldItalic = TextStyle(
-  color: lightColor,
+  color: white,
   fontFamily: 'PoppinsSemiBoldItalic',
 );

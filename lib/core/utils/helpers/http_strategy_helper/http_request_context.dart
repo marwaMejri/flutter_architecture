@@ -17,7 +17,7 @@ class HttpRequestContext {
   HttpRequestContext(this.connectivityCheckerHelper);
 
   final ConnectivityCheckerHelper connectivityCheckerHelper;
-  final String? baseUrl = locator<AppConfigurationsHelper>().baseUrl;
+  final String? baseUrl = locator<AppConfigurations>().baseUrl;
 
   Map<String, String> _sharedDefaultHeader = <String, String>{};
 

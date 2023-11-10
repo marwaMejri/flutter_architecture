@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/core/di/app_component/app_component.dart';
+import 'package:flutter_architecture/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
 import 'package:flutter_architecture/core/utils/helpers/extension_functions/size_extension.dart';
-import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/core/utils/values/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherSingleInfo extends StatelessWidget {
-  const WeatherSingleInfo({super.key,
+  const WeatherSingleInfo({
+    super.key,
     this.infoTitle,
     this.infoDescription,
     this.assetString,
@@ -19,6 +21,7 @@ class WeatherSingleInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppConfigurations appConfigurations = locator<AppConfigurations>();
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,14 +42,14 @@ class WeatherSingleInfo extends StatelessWidget {
             if (assetString != null)
               SvgPicture.asset(
                 assetString!,
-                color: primaryColor,
+                color: appConfigurations.appTheme.primaryColor,
                 width: assetSize ?? 20.w,
               ),
             Text(
               infoDescription ?? '',
               style: poppinsRegular.copyWith(
                 fontSize: 14.w,
-                color: lightColor,
+                color: appConfigurations.appTheme.backgroundLightColor,
               ),
             ),
           ],

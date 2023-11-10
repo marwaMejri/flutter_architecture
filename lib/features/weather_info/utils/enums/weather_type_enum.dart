@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_architecture/core/utils/values/colors.dart';
 import 'package:flutter_architecture/features/weather_info/domain/entities/weather_remote_info_response_entity/weather_theme_entity.dart';
 
@@ -49,33 +50,33 @@ extension WeatherTypeEnumThemeExtension on WeatherTypeEnum? {
       case WeatherTypeEnum.Clouds:
       case WeatherTypeEnum.Rain:
         value = WeatherThemeEntity(
-          firstColor: blue,
-          secondColor: lightBlue,
+          firstColor: blue3E97C8,
+          secondColor: blue3E97C8.withOpacity(0.8),
         );
         break;
       case WeatherTypeEnum.Drizzle:
       case WeatherTypeEnum.Snow:
         value = WeatherThemeEntity(
-          firstColor: cyan,
-          secondColor: cyanLight,
+          firstColor: blue3E97C8,
+          secondColor: blueD8E7F2,
         );
         break;
       case WeatherTypeEnum.Clear:
         value = WeatherThemeEntity(
-          firstColor: orange,
-          secondColor: yellow,
+          firstColor: Colors.orange,
+          secondColor: Colors.yellow,
         );
         break;
       case WeatherTypeEnum.other:
         value = WeatherThemeEntity(
-          firstColor: grey,
-          secondColor: lightGrey,
+          firstColor: greyDDDDDD,
+          secondColor: black404040,
         );
         break;
       default:
         value = WeatherThemeEntity(
-          firstColor: blue,
-          secondColor: lightBlue,
+          firstColor: blue3E97C8,
+          secondColor: blueD8E7F2,
         );
         break;
     }
